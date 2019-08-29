@@ -1,5 +1,5 @@
 import { RootState } from "../redux/rootReducer";
-import { HomeComponent } from "../сomponents/home/homeComponent";
+import  HomeComponent   from "../сomponents/home/homeComponent";
 import { connect } from "react-redux";
 import { doInit } from "../redux/home/actions";
 

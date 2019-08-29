@@ -8,7 +8,8 @@ export enum HomeActions {
 }
 
 export interface HomeState extends BaseState {
-  token: any;
   isLog: boolean;
-  error: string;
+  age: string,
+  email: string,
+  name:string,
 }

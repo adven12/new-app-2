@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import {LogoutState,  LogoutRequest } from "../../redux/logout/types";
+import { doLogin } from "../../redux/login/sagasLogin";
 
 
 export interface HeaderProps {
@@ -25,6 +26,11 @@ const  HeaderComponent: React.FC = (props:any) => {
     window.location.href = "/";
       //  doLogout({isLog: false});  
     }
+    console.log(props.isLog );
+    
+  if(props.isLog  && props.data.role === undefined){
+    doLogin();
+  }  
     
     return (
       <div className="headerComponent">
@@ -36,7 +42,7 @@ const  HeaderComponent: React.FC = (props:any) => {
                    <Link className="headerComponent-link" to="/home">Products</Link>
                    <Link onClick={() => logout()} className="headerComponent-link headerComponent-a" to="/">Logout</Link>
                  </header>
-          ) : console.log("dffdg")
+          ) : console.log("dffdg") 
         }
         {props.isLog  && props.data.role === undefined ?
           (

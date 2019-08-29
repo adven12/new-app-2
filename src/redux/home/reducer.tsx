@@ -3,9 +3,11 @@ import { HomeState } from "./types";
 import { string } from "prop-types";
 
 export const initialState: HomeState = {
-  token: "",
   error: '',
   isLog: false,
+  age: "",
+  email: "",
+  name:"",
 };
 
 export function homeReducer(state: HomeState = initialState, action: any) {
