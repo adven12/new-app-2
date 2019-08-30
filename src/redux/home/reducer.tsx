@@ -12,6 +12,19 @@ export const initialState: HomeState = {
 
 export function homeReducer(state: HomeState = initialState, action: any) {
   switch (action.type) {
+    // case `@@home/DO_HOME_MODAL`: {
+    //   console.log("@@home/DO_HOME_MODAL");
+    //   return {
+    //     ...state,
+    //   };
+    // }
+    // case `@@home/DO_HOME_MODAL_SUCCESS`: {
+    //   const { data } = action.payload;
+    //   return {
+    //     ...state,
+    //     data,
+    //   };
+    // }
     case `@@home/DATA_INIT`: {
       return initialState;
     }

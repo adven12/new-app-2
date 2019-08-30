@@ -23,11 +23,10 @@ export class LoginComponent extends React.Component<LoginProps, LoginState> {
   };
   handle = (event: any) =>{
     this.setState({ [event.target.name]: event.target.value } as any);  
-     
-  }
-
+  }  
     
 
+  
   login = () => {
     const { doLogin } = this.props;
     console.log('this.state.email = ', this.state.email);

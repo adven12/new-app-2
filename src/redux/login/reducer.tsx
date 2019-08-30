@@ -36,7 +36,19 @@ export function loginReducer(state: LoginState = initialState, action: any) {
         test: 'test',
       };
     }
-
+    case `@@home/DO_HOME_MODAL`: {
+      console.log("@@home/DO_HOME_MODAL");
+      return {
+        ...state,
+      };
+    }
+    case `@@home/DO_HOME_MODAL_SUCCESS`: {
+      const { data } = action.payload;
+      return {
+        ...state,
+        data,
+      };
+    }
     default:
       return state;
   }
