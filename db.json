@@ -16,15 +16,17 @@
     },
     {
       "id": 3,
-      "name": "zzz",
-      "email": "zzz",
-      "password": "1111"
+      "name": "qqq",
+      "email": "qqq",
+      "password": "1111",
+      "avatar": ""
     },
     {
       "id": 4,
       "name": "Artem",
       "email": "fourth",
-      "password": "1111"
+      "password": "1111",
+      "avatar": ""
     }
   ]
 }

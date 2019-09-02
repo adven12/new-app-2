@@ -8,7 +8,7 @@ import { doRegistration } from "./registration/sagasRegistration"
 import { all } from "redux-saga/effects";
 import { loadState, saveState } from "./localStorage";
 import { doUsers } from "./users/sagasUsers";
-import { doHomeModal } from "./home/sagasHome";
+import { saveImg } from "./home/sagasHome";
 
 export default function configureStore(): Store<RootState> {
   
@@ -32,7 +32,7 @@ export default function configureStore(): Store<RootState> {
     });
 
     sagaMiddleware.run(function*() {
-      yield all([doLogin(), doRegistration(), doUsers(), doHomeModal()]);
+      yield all([doLogin(), doRegistration(), doUsers(), saveImg()]);
     });
 
   return store;

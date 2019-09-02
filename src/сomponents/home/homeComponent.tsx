@@ -78,9 +78,10 @@ const  HomeComponent: React.FC<HomeProps> = (props:any) => {
     email: "",
     name: "",
     error: "",
+    changePhoto: "",
+    idUser: "",
   };
   const classes = useStyles();
-  // const [open, setOpen] = React.useState(false);
 
   // const handleChange = (e: any) => {
   //   // this.setState({ [name]: e.target.value } as any);
@@ -90,33 +91,42 @@ const  HomeComponent: React.FC<HomeProps> = (props:any) => {
   //     e.target.value = e.target.value;
   //   }
   // }
-  const handleImage = (e: any) =>{
-  console.log("working1");
-        // let defaultPhoto = this.props.imageProfile
-        // let img:any = document.querySelector('#photo');
-        // const toBase64 = (file:any) => new Promise((resolve, reject) => {
-        //     const reader = new FileReader();
-        //     reader.readAsDataURL(file);
-        //     reader.onload = () => resolve(reader.result);
-        //     reader.onerror = error => reject(error);
-        // });
-        // async function Main(){
-        //     const file:any = e.target.files[0];
-        //     if(!file){
-        //         return defaultPhoto
-        //     }
-        //     return await toBase64(file)
-        // }
-        // Main().then(res =>{
-        //     this.setState({changePhoto: res})
-        //     img.src = res;
-        // })
-  }
-  const handleSubmit = (e:any) =>{
-  console.log("working2");
-  // this.props.saveImgProfile({img:this.state.changePhoto, id:this.props.idUser})
-  }
-  
+  // const handleImage = (e: any) =>{
+  // console.log("working1");
+  //       let defaultPhoto = {avatar};
+  //       console.log("*** ",defaultPhoto);
+  //       let img:any = document.querySelector('#photo');
+  //       console.log("*** ",img);
+  //       const toBase64 = (file:any) => new Promise((resolve, reject) => {
+  //           const reader = new FileReader();
+  //           console.log("*** ",reader);
+  //           reader.readAsDataURL(file);
+  //           reader.onload = () => resolve(reader.result);
+  //           reader.onerror = error => reject(error);
+  //       });
+  //       async function Main(){
+  //          const file:any = e.target.files[0];
+  //           if(!file){
+  //               return defaultPhoto
+  //           }
+  //           return await toBase64(file)
+  //       }
+  //       // Main().then(res =>{
+  //       //     this.setState({changePhoto: res})
+  //       //     img.src = res;
+  //       // })
+  // }
+  // const handleSubmit = (e:any) =>{
+  // console.log("working2");
+  // // this.props.saveImgProfile({img:this.state.changePhoto, id:this.props.idUser})
+  // }
+    //  const changePhoto = () =>{
+
+    //  }
+  //   const savePhotoProfile = () =>{
+  //     // props.saveImgProfile({img:state.changePhoto, id:this.props.idUser})
+  //  }
+     
   return (
       <div className="homeComponent">
               
@@ -128,7 +138,7 @@ const  HomeComponent: React.FC<HomeProps> = (props:any) => {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image } >
-              <img className={classes.img} alt="avatar" src={avatar} />
+              <img className={classes.img} alt="avatar" src={avatar} id="photo"/>
               {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.bigAvatar} /> */}
             </ButtonBase>
           </Grid> 
@@ -165,9 +175,9 @@ const  HomeComponent: React.FC<HomeProps> = (props:any) => {
             </Grid>
             <Grid item container  alignItems="center" justify="flex-start"  direction="row">
             {/* <div className="homeComponent-user-buttons" > */}
-              <Button  onClick={handleImage}  size="small" className={classes.button}><input type="file" onClick={handleImage} placeholder="Choose avatar" className={classes.button}/></Button>
+              {/* <Button  onClick={handleImage}  size="small" className={classes.button}><input type="file" onClick={handleImage} placeholder="Choose avatar" className={classes.button}/></Button> */}
               {/* <input type="file" onClick={handleImage} placeholder="Choose avatar" className={classes.button}/> */}
-              <Button  onClick={handleSubmit} size="small" component="span" className={classes.button}>Upload avatar</Button>
+              {/* <Button  onClick={handleSubmit} size="small" component="span" className={classes.button}>Upload avatar</Button> */}
               <HomeComponentModal />
             {/* </div> */}
             </Grid>

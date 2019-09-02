@@ -58,13 +58,24 @@ import { doHomeModal } from '../../redux/home/actions';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      position: 'absolute',
-      width: 270,
+      // position: 'absolute',
+      // maxWidth: 270,
+      // maxHeight: 270,
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-      margin: theme.spacing(21, 98),
+      padding: theme.spacing(0, 4, 1),
+      // margin: theme.spacing(30, 98),
+      // display: 'flex',
+      // margin: 'auto',
+      // justifyContent='center',
+    },
+    location: {
+      display: 'flex',
+      margin:"110px auto",
+      position: 'absolute',
+      maxWidth: 270,
+      maxHeight: 270,
     },
     button: {
         margin: theme.spacing(1),
@@ -90,14 +101,14 @@ const HomeComponentModal: React.FC<HomeProps> = () => {
   return (
     <div>
       <Button onClick={handleOpen} size='medium' component="span" className={classes.button}>Editing profile</Button>
-      <Modal
+      <Modal className={classes.location}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={open}
         onClose={handleClose}
       >
         <div  className={classes.paper}>
-          <h2 id="simple-modal-title">Enter new name or email</h2>
+          <h3 id="simple-modal-title">Enter new name or email</h3>
           <div id="simple-modal-description">
             <HomeLogic />
           </div>

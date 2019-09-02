@@ -8,6 +8,8 @@ export const initialState: HomeState = {
   age: "",
   email: "",
   name:"",
+  changePhoto:"",
+  idUser: "",
 };
 
 export function homeReducer(state: HomeState = initialState, action: any) {
@@ -25,10 +27,10 @@ export function homeReducer(state: HomeState = initialState, action: any) {
     //     data,
     //   };
     // }
-    case `@@home/DATA_INIT`: {
+    case `@@home/DO_HOME_IMG`: {
       return initialState;
     }
-    case `@@home/DATA_LOADED`: {
+    case `@@home/DO_HOME_IMG`: {
       return {
         ...state,
         

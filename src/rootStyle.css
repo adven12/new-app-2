@@ -114,7 +114,43 @@
 .homeComponent-users-data{
     padding-left: 5px;
 }
-
-
+.homeLogic{
+    margin: auto;
+    display: inline-block;
+}
+.homeLogic-input{
+    width: 200px;
+	font-size: 13px;
+	padding: 6px 0 4px 10px;
+	border: 1px solid #cecece;
+	background: #F6F6f6;
+    border-radius: 8px;
+    text-decoration: none;
+    outline:none;
+    margin-bottom: 5px;
+}
+.homeLogic-input-upload{
+    width: 100px;
+	font-size: 13px;
+	padding: 6px 0 4px 10px;
+	border: 1px solid #cecece;
+	background: #F6F6f6;
+    border-radius: 8px;
+    text-decoration: none;
+    outline:none;
+    margin-bottom: 5px;
+}
+.homeLogic-button{
+    margin-top: 10px;
+    text-decoration: none;
+    outline: none;
+    color: coral;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    background-size: 200% auto;
+    margin-left: 20px;
+}
 
 

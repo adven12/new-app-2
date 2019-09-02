@@ -9,29 +9,33 @@ import { any } from "prop-types";
     
 
 // worker sagas
-export function* doHomeModal(): IterableIterator<any> {
-  yield takeEvery(`@@home/DO_HOME_MODAL`, function* (action: any) {
+export function* saveImg(): IterableIterator<any> {
+  yield takeEvery(`@@home/DO_HOME_IMG`, function* (action: any) {
     try {
 
     console.log(action);
     
     
-      const answerApi = yield call(callApi,'GET', 'users');
+      const answerApi = yield call(callApi,'PUT', 'users');
          console.log(answerApi);
 
-         const { email, name  } = action;
+         const { img, id  } = action;
          
-        console.log('User email: ' + email);
-        console.log('User password: ' + name);
+        console.log('User changePhoto: ' + img);
+        console.log('User idUser: ' + id);
             
+        const user = answerApi.find((answerApi: any) => id === answerApi.id )
+        console.log(user);
+
+        if(user){
         yield put({
-        type: `@@home/DO_HOME_MODAL_SUCCESS`,
+        type: `@@home/DO_HOME_IMG`,
           payload: {
-          data: answerApi,
+          data: user,
           // isLog: true,
         }
        });
-       console.log(action);
+      }
     
 }catch (error) {
     yield put({
