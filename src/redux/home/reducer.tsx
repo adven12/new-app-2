@@ -1,6 +1,5 @@
 import { RootState } from "../rootReducer";
 import { HomeState } from "./types";
-import { string } from "prop-types";
 
 export const initialState: HomeState = {
   error: '',
@@ -9,7 +8,7 @@ export const initialState: HomeState = {
   email: "",
   name:"",
   changePhoto:"",
-  idUser: "",
+  idUser: 0,
 };
 
 export function homeReducer(state: HomeState = initialState, action: any) {
@@ -27,7 +26,7 @@ export function homeReducer(state: HomeState = initialState, action: any) {
     //     data,
     //   };
     // }
-    case `@@home/DO_HOME_IMG`: {
+    case `@@home/DO_HOME`: {
       return initialState;
     }
     case `@@home/DO_HOME_IMG`: {
@@ -36,7 +35,7 @@ export function homeReducer(state: HomeState = initialState, action: any) {
         
       };
     }
-    case `@@ERROR_OCCURED`: {
+    case `@@home/DO_HOME_FAILED`: {
       const { error } = action.payload;
       return {
         ...state,

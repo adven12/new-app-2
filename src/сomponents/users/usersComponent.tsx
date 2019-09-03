@@ -1,9 +1,5 @@
 import React from "react";
-import { UsersState, UsersRequest } from "../../redux/users/types";
-// import { dousers } from "./redux/users/actions";
-// import HeaderContainer from "../../сontainers/headerContainer"
-// import { error } from "../../redux/common/reducer";
-// import { Error } from "../common/errorComponent"
+import { UsersState } from "../../redux/users/types";
 import { RootState } from "../../redux/rootReducer";
 
 import { makeStyles, lighten} from '@material-ui/core/styles';
@@ -48,8 +44,7 @@ export interface UsersProps {
 
 const UsersComponent: React.FC = (props:any) => {
   
- 
-  const state: any = {
+   const state: UsersState = {
     // isLog: false,
     error: "",
     dataUsers: "",

@@ -28,20 +28,28 @@ export interface HomeModalProps {
         email: "",
         name: "",
         changePhoto: "",
-        idUser: "",
+        idUser: 0,
       };
     avatarPhoto:any = {avatar}
      handle = (event: any) =>{
       this.setState({ [event.target.name]: event.target.value } as any);
+
     }
     edit = ():any => {
         // const { doHomeModal } = this.props;
         // doHomeModal({ email: this.state.email, name: this.state.name }); 
         // console.log("8888888888888888", doHomeModal({ email: this.state.email, name: this.state.name }));
-        // const { saveImg } = this.props;
+        // change inputs from homeComponent
+        let editName:any = document.querySelector('#user-name');
+        let editEmail:any = document.querySelector('#user-email');
+        console.log("1111111 ",editName.value);
+        editName.value = this.state.name;
+        editEmail.value = this.state.email;
+       
         const newSave = {
             name: this.state.name,
             email: this.state.email,
+            changePhoto: this.state.changePhoto,
         };
         const local: any = localStorage.getItem('state')
         console.log(local);
@@ -49,34 +57,44 @@ export interface HomeModalProps {
         console.log(localParce.login.data);
         for(var key in localParce.login.data) {
             if(key ==='email'){
+              if(newSave.email != ''){
               localParce.login.data[key] = newSave.email
               console.log('What we assign', key, ':', localParce.login.data[key])
               console.log('Modified - login:',localParce) 
+              }
             } 
             if(key ==='name'){
+              if(newSave.name != ''){
                 localParce.login.data[key] = newSave.name
                 console.log('What we assign', key, ':', localParce.login.data[key])
                 console.log('Modified - login:',localParce) 
-            } 
+              }
+            }
+            if(key ==='avatar'){
+              localParce.login.data[key] = newSave.changePhoto
+              console.log('Img', key, ':', localParce.login.data[key])
+              console.log('Modified - img:',localParce) 
+          }  
         }   
-        console.log(localParce.login.data);
         
             fetch(`http://localhost:3002/users/${localParce.login.data.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(localParce.login.data)
           });
-          
+          // upload new data in localStorage            
+          localStorage.setItem('state',JSON.stringify(localParce));
           // localStorage.clear();
           // window.location.href = "/login";
+          let imgMin:any = document.querySelector('#photoMin');
+          imgMin.src = this.state.changePhoto;
     };
 
     handleImage = (e: any) =>{
-      console.log("working1");
             let defaultPhoto = this.avatarPhoto
-            console.log("*** ",defaultPhoto);
             let img:any = document.querySelector('#photo');
-            console.log("*** ",img);
+            // let imgMin:any = document.querySelector('#photoMin');
+
             const toBase64 = (file:any) => new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 console.log("*** ",reader);
@@ -85,30 +103,32 @@ export interface HomeModalProps {
                 reader.onerror = error => reject(error);
             });
             async function Main(){
-               const input : any = (document.querySelector('#img'));
+               const input : any = (document.querySelector('#upload_img'));
                const file : any = input ? input.files[0] : null;
+               
                 if(!file){
                     return defaultPhoto
                 }
                 return await toBase64(file)
-            }
+            }           
             Main().then(res =>{
-              debugger;
+  
                 this.setState({changePhoto: res})
                 img.src = res;
             })
-      }
-          savePhotoProfile = () =>{
+    }
+          
+      savePhotoProfile = () =>{
             this.handleImage(null);
-                    const { saveImg } = this.props;
                     console.log("working2");
-                    saveImg({img: this.state.changePhoto, id: this.props.idUser})
+                             
                    }
 
     render(){
         return(
             <div className="homeLogic">
              <input
+              id="edit_name"
               className="homeLogic-input"
               type="name"
               name="name"
@@ -116,6 +136,7 @@ export interface HomeModalProps {
               onChange={this.handle}
             />
             <input
+              id="edit_email"
               className="homeLogic-input"
               type="email"
               name="email"
@@ -123,7 +144,7 @@ export interface HomeModalProps {
               onChange={this.handle}
             />
              <Button    size="small" className="homeLogic-input">
-                <input id="img" type="file"  placeholder="Choose avatar" className="homeLogic-input-upload"/>
+                <input id="upload_img" type="file"  placeholder="Choose avatar" className="homeLogic-input-upload"/>
              </Button>
               {/* <input type="file" onClick={handleImage} placeholder="Choose avatar" className={classes.button}/> */}
               <Button  size="small" component="span" className="homeLogic-input" onClick={() => this.savePhotoProfile()}>Upload avatar</Button>

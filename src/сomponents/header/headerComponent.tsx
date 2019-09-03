@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import {LogoutState,  LogoutRequest } from "../../redux/logout/types";
 import { doLogin } from "../../redux/login/sagasLogin";
-
+import avatar from "../../img/avatar.png"; 
 
 export interface HeaderProps {
   doLogin: () => object;
@@ -18,9 +18,11 @@ const  HeaderComponent: React.FC = (props:any) => {
   //     role: "",
   //   },
   // };
-
- 
-  function logout()  {
+  let defoltPhoto = props.data.avatar;
+  if(defoltPhoto === '' || defoltPhoto === undefined){
+    defoltPhoto = avatar
+  }
+   function logout()  {
     // const { doLogin } = props;
     localStorage.clear();
     window.location.href = "/";
@@ -47,6 +49,7 @@ const  HeaderComponent: React.FC = (props:any) => {
         {props.isLog  && props.data.role === undefined ?
           (
               <header className="headerComponent-header">
+                <img src={defoltPhoto} alt="avatar" id="photoMin" className="headerComponent-img"/>
                 <Link className="headerComponent-link" to="/home">Home</Link>
                 <Link className="headerComponent-link" to="/home">Products</Link>
                 <Link onClick={() => logout()} className="headerComponent-link headerComponent-a" to="/">Logout</Link>

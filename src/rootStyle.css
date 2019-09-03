@@ -34,6 +34,11 @@
     text-transform: uppercase;
     cursor: pointer;
 }
+.headerComponent-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;   
+}
 .loginComponent-input{
     width: 300px;
 	font-size: 13px;

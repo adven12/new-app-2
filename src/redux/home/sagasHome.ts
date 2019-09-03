@@ -1,21 +1,11 @@
-import { put, takeEvery , call, cancel, fork, take, delay} from "redux-saga/effects";
-import { push } from 'react-router-redux'
-//import { delay } from "redux-saga";
-//import { DoLoginProps } from "./types";
+import { put, takeEvery , call} from "redux-saga/effects";
 import  {callApi}   from "../../redux/login/req";
-import { HomeModalRequest, HomeModalState } from "./types";
-import { any } from "prop-types";
-
     
 
-// worker sagas
 export function* saveImg(): IterableIterator<any> {
   yield takeEvery(`@@home/DO_HOME_IMG`, function* (action: any) {
     try {
-
-    console.log(action);
-    
-    
+       
       const answerApi = yield call(callApi,'PUT', 'users');
          console.log(answerApi);
 
@@ -39,7 +29,7 @@ export function* saveImg(): IterableIterator<any> {
     
 }catch (error) {
     yield put({
-      type: `@@registration/REGISTRATION_FAILED`,
+      type: `@@home/DO_HOME_FAILED`,
       payload: {
         error: error.message
       }

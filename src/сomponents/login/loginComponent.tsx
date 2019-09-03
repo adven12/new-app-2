@@ -19,7 +19,6 @@ export class LoginComponent extends React.Component<LoginProps, LoginState> {
     isLog: false,
     error: '',
     data:[],
-    test:"",
   };
   handle = (event: any) =>{
     this.setState({ [event.target.name]: event.target.value } as any);  

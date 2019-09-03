@@ -31,7 +31,6 @@ export default () => (
     <Router>
       <div className="root-class">
       <HeaderContainer />
-        {/* <Route path={Path.root} component={HeaderContainer} /> */}
         <Route path={Path.login} component={LoginContainer} />
         <Route path={Path.registration} component={RegistrationContainer} />
         <Route path={Path.home} component={HomeContainer} />

@@ -1,12 +1,9 @@
 import { HomeActions, HomeModalRequest, saveImgProfile } from "./types";
 
-// import { createAction } from "typesafe-actions";
-// import { LoginActions, LoginResult, LoginRequest } from "./types";
-
 const prefix = "@@home";
 
-export function doInit() {
-  return { type: `${prefix}/${HomeActions.DATA_INIT}` };
+export function doHome() {
+  return { type: `${prefix}/${HomeActions.DO_HOME}` };
 }
 export function doHomeModal(data: HomeModalRequest) {
   return {

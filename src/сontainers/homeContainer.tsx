@@ -7,7 +7,7 @@ const mapStateToProps = (state: RootState) => ({
   error: state.error,
   isLog: state.login.isLog,
   data: state.login.data,
-  test: state.login.test,
+  // avater: state.login.data,
 });
 
 export default connect(

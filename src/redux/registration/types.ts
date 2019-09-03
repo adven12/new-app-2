@@ -8,19 +8,13 @@ export interface RegistrationState  {
   email: string;
   password: string;
   name: string;
-  isLog: boolean,
-}
-export interface DoRegistrationProps {
-  email: string;
-  password: string;
-  name: string;
-  isLog: boolean,
+  avatar: string;
+  isLog: boolean;
 }
 export interface RegistrationRequest {
   email: string;
   password: string;
   name: string;
+  avatar: string;
 }
-export interface RegistrationResult {
-  token: string;
-}
+

@@ -1,6 +1,6 @@
     
 import { Reducer, combineReducers } from "redux";
-import { LoginState, LogoutState } from "./login/types";
+import { LoginState } from "./login/types";
 import { loginReducer } from "./login/reducer";
 import { homeReducer } from "./home/reducer";
 import { errorReducer } from "./common/reducer";

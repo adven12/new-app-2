@@ -68,7 +68,7 @@ export interface HomeProps {
   isLog: boolean,
   error: string,
   data: any,
-  test: string,
+  // avater: string,
 }
 
 const  HomeComponent: React.FC<HomeProps> = (props:any) => {
@@ -79,54 +79,15 @@ const  HomeComponent: React.FC<HomeProps> = (props:any) => {
     name: "",
     error: "",
     changePhoto: "",
-    idUser: "",
+    idUser: 0,
   };
   const classes = useStyles();
 
-  // const handleChange = (e: any) => {
-  //   // this.setState({ [name]: e.target.value } as any);
-  // };
-  // const  handleKeyDown = (e:any) => {
-  //   if (e.key === 'Enter') {
-  //     e.target.value = e.target.value;
-  //   }
-  // }
-  // const handleImage = (e: any) =>{
-  // console.log("working1");
-  //       let defaultPhoto = {avatar};
-  //       console.log("*** ",defaultPhoto);
-  //       let img:any = document.querySelector('#photo');
-  //       console.log("*** ",img);
-  //       const toBase64 = (file:any) => new Promise((resolve, reject) => {
-  //           const reader = new FileReader();
-  //           console.log("*** ",reader);
-  //           reader.readAsDataURL(file);
-  //           reader.onload = () => resolve(reader.result);
-  //           reader.onerror = error => reject(error);
-  //       });
-  //       async function Main(){
-  //          const file:any = e.target.files[0];
-  //           if(!file){
-  //               return defaultPhoto
-  //           }
-  //           return await toBase64(file)
-  //       }
-  //       // Main().then(res =>{
-  //       //     this.setState({changePhoto: res})
-  //       //     img.src = res;
-  //       // })
-  // }
-  // const handleSubmit = (e:any) =>{
-  // console.log("working2");
-  // // this.props.saveImgProfile({img:this.state.changePhoto, id:this.props.idUser})
-  // }
-    //  const changePhoto = () =>{
-
-    //  }
-  //   const savePhotoProfile = () =>{
-  //     // props.saveImgProfile({img:state.changePhoto, id:this.props.idUser})
-  //  }
-     
+  let defoltPhoto = props.data.avatar;
+  if(defoltPhoto === '' || defoltPhoto === undefined){
+    defoltPhoto = avatar
+  }
+  
   return (
       <div className="homeComponent">
               
@@ -138,8 +99,7 @@ const  HomeComponent: React.FC<HomeProps> = (props:any) => {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image } >
-              <img className={classes.img} alt="avatar" src={avatar} id="photo"/>
-              {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.bigAvatar} /> */}
+              <img className={classes.img} alt="avatar" src={defoltPhoto} id="photo"/>
             </ButtonBase>
           </Grid> 
           <Grid item xs={12} sm container>
