@@ -41,7 +41,7 @@ const  HeaderComponent: React.FC = (props:any) => {
           (
                  <header className="headerComponent-header">
                    <Link className="headerComponent-link" to="/users">Users</Link>
-                   <Link className="headerComponent-link" to="/home">Products</Link>
+                   <Link className="headerComponent-link" to="/products">Products</Link>
                    <Link onClick={() => logout()} className="headerComponent-link headerComponent-a" to="/">Logout</Link>
                  </header>
           ) : console.log("dffdg") 
@@ -51,7 +51,7 @@ const  HeaderComponent: React.FC = (props:any) => {
               <header className="headerComponent-header">
                 <img src={defoltPhoto} alt="avatar" id="photoMin" className="headerComponent-img"/>
                 <Link className="headerComponent-link" to="/home">Home</Link>
-                <Link className="headerComponent-link" to="/home">Products</Link>
+                <Link className="headerComponent-link" to="/products">Products</Link>
                 <Link onClick={() => logout()} className="headerComponent-link headerComponent-a" to="/">Logout</Link>
               </header>
           ) :  console.log("dffdg")

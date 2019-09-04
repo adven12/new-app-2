@@ -157,5 +157,13 @@
     background-size: 200% auto;
     margin-left: 20px;
 }
+.productsComponent-books{
+    display: inline-block;
+    margin: 15px;
+    margin-bottom: 40px;
+}
+/* .productsComponent-list{
+    display: block;
+} */
 
 
