@@ -20,6 +20,7 @@
     font-size: 20px;
     color: black;  
     text-transform: uppercase;
+    padding-top: 8px;
 }
 .headerComponent-link:hover{
     color: coral;
@@ -162,8 +163,9 @@
     margin: 15px;
     margin-bottom: 40px;
 }
-/* .productsComponent-list{
-    display: block;
-} */
+.basketComponent{
+    align-content: center;
+    text-align: center;
+}
 
 

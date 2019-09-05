@@ -3,7 +3,7 @@ import { ProductsState } from "../../redux/products/types";
 import { RootState } from "../../redux/rootReducer";
 import product_2 from "../../img/product_2.jpg"; 
 import product_1 from "../../img/product_1.jpg"; 
-import ProductLogic from "../products/productsLogic"
+import ProductLogic from "../products/productsLogic";
 
 import { makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -22,7 +22,7 @@ import { CardMedia, Modal } from "@material-ui/core";
 const useStyles = makeStyles(theme => ({
   card: {
     minWidth: 100,
-    maxWidth: 200,
+    maxWidth: 230,
     margin: '0 auto',
   },
   bullet: {
@@ -65,7 +65,7 @@ export interface ProductsProps {
   doProducts: () => object;
   isLog: boolean,
   dataProducts: string,
-  role: string,
+  data: [],
 } 
 
 const ProductsComponent: React.FC = (props:any) => {
@@ -87,18 +87,23 @@ const ProductsComponent: React.FC = (props:any) => {
    const { doProducts } = props;
   doProducts();
   }
-  // console.log(product_1);
+  console.log(product_1);
   
-  const addNewProduct = () => {
-   console.log("working");
-  //  const { doRegistration } = this.props;
-  //  doRegistration({ email: this.state.email, password: this.state.password, name: this.state.name, avatar:this.state.avatar });
+  // const addNewProduct = () => {
+  //  console.log("working");
+  // }
+  const handleBuy = () => {
+    // <ProductLogic />
+  }
+  const handleDel = () => {
+    let delProduct:any = document.querySelector('#new_name');
   }
 
     console.log(props.dataProducts);
     console.log(props.isLog);
     console.log(props.role);
     console.log(product_2);
+    console.log(props.data);
     
 
     return (
@@ -129,7 +134,12 @@ const ProductsComponent: React.FC = (props:any) => {
                   </Typography>
                   </CardContent>
                   <CardActions>
-                  <Button size="small" className={classes.button}>Buy</Button>
+                  <Button size="small" className={classes.button} onClick={handleBuy}>Buy</Button>
+                  {props.data.role === "admin" ? 
+                  (
+                  <Button size="small" className={classes.button} onClick={handleDel}>Del</Button>
+                  ) : console.log("dffdg") 
+                  }
                 </CardActions>
                   </Card>
                   </div>
@@ -137,7 +147,12 @@ const ProductsComponent: React.FC = (props:any) => {
                    )
                    ) : (console.log("isLog = false"))
                   }
-                  <br /><Button size="small" className={classes.button} onClick={handleOpen}>Add new product</Button>
+                  <br />
+                  {props.data.role === "admin" ? 
+                  (
+                  <Button size="small" className={classes.button} onClick={handleOpen}>Add new product</Button>
+                  ) : console.log("dffdg") 
+                  }
                   <Modal className={classes.location}
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"

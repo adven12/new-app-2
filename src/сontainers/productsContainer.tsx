@@ -8,7 +8,7 @@ import { doProducts } from "../redux/products/actions";
 const mapStateToProps = (state: RootState) => ({
   isLog: state.login.isLog,
   dataProducts: state.products.dataProducts,
-  role: state.products.role,
+  data: state.login.data,
 });
 
 export default connect(

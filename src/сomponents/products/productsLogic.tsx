@@ -9,6 +9,7 @@ import { Button } from "@material-ui/core";
 import { RootState } from "../../redux/rootReducer";
 import { home } from "../../redux/home/reducer";
 import no_picture from "../../img/no_picture.png"; 
+import Login from "../login/Login";
 
 export interface ProductsModalProps {
     // savePicture:(data: savePictureProfile) => object;
@@ -25,7 +26,7 @@ export interface ProductsModalProps {
         discript: "",
         price: "",
       };
-      no_picturePhoto:any = {no_picture}
+      no_picturePhoto:any = no_picture
      handle = (event: any) =>{
       this.setState({ [event.target.name]: event.target.value } as any);
 
@@ -34,60 +35,31 @@ export interface ProductsModalProps {
         let addName:any = document.querySelector('#new_name');
         let addDiscript:any = document.querySelector('#new_discript');
         let addPrice:any = document.querySelector('#new_price');
-        console.log("1111111 ",addName.value);
         addName.value = this.state.name;
         addDiscript.value = this.state.discript;
         addPrice.value = this.state.price;
+        
         const newSave = {
             name: this.state.name,
             discript: this.state.discript,
             price: this.state.price,
             picture: this.state.picture,
         };
-        console.log(newSave);
-        
-        // const local: any = localStorage.getItem('state')
-        // console.log(local);
-        // const localParce = JSON.parse(local)
-        // console.log(localParce.login.data);
-        // for(var key in localParce.login.data) {
-        //     if(key ==='email'){
-        //       if(newSave.email != ''){
-        //       localParce.login.data[key] = newSave.email
-        //       console.log('What we assign', key, ':', localParce.login.data[key])
-        //       console.log('Modified - login:',localParce) 
-        //       }
-        //     } 
-        //     if(key ==='name'){
-        //       if(newSave.name != ''){
-        //         localParce.login.data[key] = newSave.name
-        //         console.log('What we assign', key, ':', localParce.login.data[key])
-        //         console.log('Modified - login:',localParce) 
-        //       }
-        //     }
-        //     if(key ==='avatar'){
-        //       localParce.login.data[key] = newSave.changePhoto
-        //       console.log('Img', key, ':', localParce.login.data[key])
-        //       console.log('Modified - img:',localParce) 
-        //   }  
-        // }   
+        if(newSave.picture === "" || this.state.picture === undefined){
+          newSave.picture = this.no_picturePhoto;
+        }
         
             fetch(`http://localhost:3003/products/`, {
             method: "POST",
             headers: { "Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(newSave)
           });
-          // localStorage.clear();
-          // window.location.href = "/login";
     };
 
     handlePicture = (e: any) =>{
             let defaultPhoto = this.no_picturePhoto
             console.log(defaultPhoto);
             
-            // let picture:any = document.querySelector('#photo');
-            // let imgMin:any = document.querySelector('#photoMin');
-            //  console.log(defaultPhoto);
             const toBase64 = (file:any) => new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 console.log("*** ",file);
@@ -106,13 +78,12 @@ export interface ProductsModalProps {
             }           
             Main().then(res =>{
                   this.setState({picture: res})
-                  console.log(res);
             })
     }
           
       saveNewPicture = () =>{
             this.handlePicture(null);
-                    console.log("working22");
+           console.log("working22");
       }
 
     render(){
@@ -155,6 +126,8 @@ export interface ProductsModalProps {
         );
     }
 }
+
+
 export default connect(
     mapStateToProps,
     // { savePicture }
