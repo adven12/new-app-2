@@ -1,7 +1,9 @@
 import React from "react";
-import { HomeState, HomeModalRequest } from "../../redux/home/types";
+import { BasketState } from "../../redux/basket/types";
 import { RootState } from "../../redux/rootReducer";
 import no_picture from "../../img/no_picture.png"; 
+import ProductsComponent from "../../сomponents/products/productsComponent";
+import { Error } from "../common/errorComponent"
 
 import { makeStyles ,Theme, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -16,6 +18,8 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Modal from '@material-ui/core/Modal';
 import { doHomeModal } from "../../redux/home/actions";
 import { MenuItem, CardMedia } from "@material-ui/core";
+import productsContainer from "../../сontainers/productsContainer";
+import { textAlign } from "@material-ui/system";
 
 
 
@@ -37,38 +41,57 @@ const useStyles = makeStyles((theme: Theme) =>
     //  alignContent: 'left',
     //  justifyContent:'left',
     marginTop: '17px',
-    }
+    },
+    sumTotal: {
+       textAlign: 'left',
+       marginTop: '17px',
+      }
 
   }),
 );
 
-export interface HomeProps {
-  // dataProducts: string,
+export interface BasketProps {
+  buyProduct: string,
+  addToBasket: string,
+  dataArr: any,
 }
 
-const  BasketComponent: React.FC<HomeProps> = (props:any) => {
-  // const state:HomeState = {
-  //   dataProducts: "",
-  // };
+const  BasketComponent: React.FC<BasketProps> = (props:any) => {
+  const state:BasketState = { 
+    buyProduct: "",
+    addToBasket: "",
+  };
   const classes = useStyles();
   const defaultimg = no_picture;
+  const newBasketProduct = props.addToBasket.addToBasket;
+  let countBooks = 0;
+  console.log("product ", props.buyProduct);
+  console.log(props.addToBasket.addToBasket);
+
+  const addBook = (id:any) => {
+    countBooks = countBooks+1;
+    // console.log(props.buyProduct.id[id]);
+    
+  };
+
+  console.log(props.dataArr);
+    
+
   return (
       <div className="basketComponent">
-        {/* <div className={classes.location}> */}
-          {/* {props.isLog ? 
-          (
-          <div className="basketComponent-user">  
-
-          </div>
-
-          ) :
-          (
+        {props.addToBasket.addToBasket === undefined ? (
           <div className="empty">
-
+          <h2>Basket is empty</h2>
           </div>
-          )
-          } */} 
-
+          ) : (
+        props.buyProduct.map((text:any, index:any) => (
+        
+        // props.dataArr.forEach(item:any,index:any => {
+        //     text.id == 
+        //     });  
+        // text.id == props.dataArr.indexOff()
+        text.id === props.addToBasket.addToBasket ?(  
+        <div className="basketComponent-content" key={index}>
         <Grid container spacing={2}>
         <Grid item  xs={2}>
         <Button className={classes.button}>-</Button>
@@ -76,25 +99,35 @@ const  BasketComponent: React.FC<HomeProps> = (props:any) => {
         <Grid item  xs={7}>
         <CardMedia
             className={classes.media}
-                    image={defaultimg}
+                    image={text.picture}
                     title="Paella dish"
                     // id={text.id}
                 />
         <Typography  component="h6">
-        {/* {text.name} */}sdgfdsgfsd
+        {/* {text.name} */}{text.name}
         </Typography>
         <Typography  component="h6">
-        {/* {text.name} */}350 U
+        {/* {text.name} */}{text.price}
         </Typography> 
         </Grid>  
         <Grid item  xs={3}>    
-        <Button className={classes.button}>+</Button>
+        <Button className={classes.button}  onClick={() => addBook(text.id)}>+</Button>
+        <Typography  component="h6">
+        {/* {addBook()} */}
+        </Typography> 
         </Grid>
         {/* </CardContent> */}
         {/* </Card> */}
         </Grid>   
+        <Typography  component="h6" className={classes.sumTotal}>
+        Sum total: 
+        </Typography> 
         <Button>cleanBasket</Button><br />
         <Button>Place your order</Button>
+        </div>
+        ) : (console.log("Orabotalo")))
+
+        ))} 
         </div>
     );
 }

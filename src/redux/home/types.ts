@@ -8,13 +8,12 @@ export enum HomeActions {
 }
 
 export interface HomeState {
-  isLog: boolean;
-  age: string,
-  email: string,
-  name:string,
-  changePhoto: string;
-  idUser: number,
-  error:  string
+changePhoto: string;
+error: string;
+isLog: boolean,
+age: string,
+email: string,
+name: string,
 }
 export interface HomeModalState  {
   email: string;

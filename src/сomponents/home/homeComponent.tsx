@@ -79,7 +79,6 @@ const  HomeComponent: React.FC<HomeProps> = (props:any) => {
     name: "",
     error: "",
     changePhoto: "",
-    idUser: 0,
   };
   const classes = useStyles();
 

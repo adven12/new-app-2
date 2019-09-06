@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductsState } from "../../redux/products/types";
+import { ProductsState, ProductsRequest } from "../../redux/products/types";
 import { RootState } from "../../redux/rootReducer";
 import product_2 from "../../img/product_2.jpg"; 
 import product_1 from "../../img/product_1.jpg"; 
@@ -18,6 +18,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { CardMedia, Modal } from "@material-ui/core";
+import { textAlign } from "@material-ui/system";
+import { any } from "prop-types";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -63,6 +65,7 @@ const useStyles = makeStyles(theme => ({
 
 export interface ProductsProps {
   doProducts: () => object;
+  doProductsToBasket: (data:ProductsRequest) => object;
   isLog: boolean,
   dataProducts: string,
   data: [],
@@ -71,8 +74,11 @@ export interface ProductsProps {
 const ProductsComponent: React.FC = (props:any) => {
   const state: ProductsState = {
     dataProducts: "",
-    role: "",
+    addToBasket: "",
+    data: "",
+    dataArr: [],
   };
+  // debugger 
   const classes:any = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -92,11 +98,23 @@ const ProductsComponent: React.FC = (props:any) => {
   // const addNewProduct = () => {
   //  console.log("working");
   // }
-  const handleBuy = () => {
-    // <ProductLogic />
+  const handleBuy = (id:any) => {
+    state.addToBasket = id;
+    const { doProductsToBasket } = props;
+    doProductsToBasket({addToBasket: state.addToBasket});
+    
   }
-  const handleDel = () => {
-    let delProduct:any = document.querySelector('#new_name');
+  const handleDel = (id:any) => {
+    props.dataProducts.forEach((item:any,index:any) => {
+     if(item.id === id){
+      props.dataProducts.splice(index, 1)
+      }
+      fetch(`http://localhost:3003/products/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json", "Accept": "application/json"},
+      })
+      .then(res => res.json());
+    });    
   }
 
     console.log(props.dataProducts);
@@ -104,8 +122,9 @@ const ProductsComponent: React.FC = (props:any) => {
     console.log(props.role);
     console.log(product_2);
     console.log(props.data);
+    console.log(state.addToBasket);
     
-
+    
     return (
       <div className="productsComponent">
           <div className="productsComponent-list">
@@ -134,10 +153,10 @@ const ProductsComponent: React.FC = (props:any) => {
                   </Typography>
                   </CardContent>
                   <CardActions>
-                  <Button size="small" className={classes.button} onClick={handleBuy}>Buy</Button>
+                  <Button size="small" className={classes.button} onClick={() => handleBuy(text.id)} id={text.id}>Buy</Button>
                   {props.data.role === "admin" ? 
                   (
-                  <Button size="small" className={classes.button} onClick={handleDel}>Del</Button>
+                  <Button size="small" className={classes.button} onClick={() => handleDel(text.id)}>Del</Button>
                   ) : console.log("dffdg") 
                   }
                 </CardActions>

@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin:"110px auto",
       position: 'absolute',
       maxWidth: 480,
-      maxHeight: 300,
+      maxHeight: 330,
     },
     paper: {
       backgroundColor: theme.palette.background.paper,

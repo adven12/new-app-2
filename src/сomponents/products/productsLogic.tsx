@@ -24,7 +24,7 @@ export interface ProductsModalProps {
         picture: "", 
         name: "",
         discript: "",
-        price: "",
+        price: 0,
       };
       no_picturePhoto:any = no_picture
      handle = (event: any) =>{

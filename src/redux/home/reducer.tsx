@@ -8,7 +8,6 @@ export const initialState: HomeState = {
   email: "",
   name:"",
   changePhoto:"",
-  idUser: 0,
 };
 
 export function homeReducer(state: HomeState = initialState, action: any) {

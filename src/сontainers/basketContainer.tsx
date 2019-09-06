@@ -8,6 +8,9 @@ const mapStateToProps = (state: RootState) => ({
 //   isLog: state.login.isLog,
 //   data: state.login.data,
   // avater: state.login.data,
+    buyProduct:state.products.dataProducts,
+    addToBasket: state.products.data,
+    dataArr: state.products.dataArr,
 });
 
 export default connect(

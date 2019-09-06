@@ -8,13 +8,20 @@ export function* doProducts(): IterableIterator<any> {
     
       const products = yield call(callApiProducts,'GET', 'products');
       console.log('products ', products);
-      
-      
+
+      // const {
+      //   data: { addToBasket },
+      //   } = action;
+      //   console.log('addToBasket saga: ' + addToBasket);
+      //   console.log('action saga: ' + action);
+
+
     if(products){
         yield put({ 
         type: `@@products/DATAPRODUCTS_LOADED`,
           payload: {
           dataProducts: products,
+          
           }
        });
     }

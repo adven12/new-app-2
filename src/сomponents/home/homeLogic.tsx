@@ -14,11 +14,11 @@ import { home } from "../../redux/home/reducer";
 export interface HomeModalProps {
     // doHomeModal: (data: HomeModalRequest) => object;
     saveImg:(data: saveImgProfile) => object;
-    idUser: any;
+    // idUser: any;
+
   }
   const mapStateToProps = (state:RootState) => ({
     changePhoto: state.home.changePhoto,
-    idUser: state.home.idUser,
     // changePhoto: state.home.changePhoto,
     // idUser: state.home.idUser,  
   });
