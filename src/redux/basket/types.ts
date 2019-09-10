@@ -1,27 +1,12 @@
 
 export enum BasketActions {
-    // DO_HOME = "DO_HOME",
-    // DO_HOME_LOAD = "DO_HOME_LOAD",
-    // DO_HOME_FAILED = "DO_HOME_FAILED",
-    // DO_HOME_MODAL = "DO_HOME_MODAL",
-    // DO_HOME_IMG = "DO_HOME_IMG",
+  CLEAN_BASKET = "CLEAN_BASKET",
+  CLEAN_BASKET_BOOK = "CLEAN_BASKET_BOOK",
   }
   
   export interface BasketState {
-  buyProduct: string;
-  addToBasket: string;
+    countBooks: number;
   }
-  export interface HomeModalState  {
-    // email: string;
-    // name: string;
-    // changePhoto: string,
-    // idUser: number,
-  }
-  export interface HomeModalRequest {
-    email: string;
-    name: string;
-  }
-  export interface saveImgProfile {
-    changePhoto: string;
-    idUser: number;
+  export interface BasketRequest {
+    dataArr: [];
   }

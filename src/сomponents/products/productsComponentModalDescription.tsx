@@ -2,10 +2,10 @@ import React from 'react';
 import { HomeState, HomeModalRequest } from "../../redux/home/types";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import  HomeLogic  from './homeLogic';
-import { Button } from '@material-ui/core';
+// import  HomeLogic  from './homeLogic';
+import { Button, Link } from '@material-ui/core';
 import { doHomeModal } from '../../redux/home/actions';
-
+import ProductsComponent from "../products/productsComponent";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -39,7 +39,7 @@ export interface HomeProps {
 
   }
 
-const HomeComponentModal: React.FC<HomeProps> = () => {
+const HomeComponentModalDescription: React.FC<HomeProps> = () => {
   const classes = useStyles({});
   const [open, setOpen] = React.useState(false);
 
@@ -51,9 +51,11 @@ const HomeComponentModal: React.FC<HomeProps> = () => {
     setOpen(false);
   };
 
+
   return (
     <div>
-      <Button onClick={handleOpen} size='medium' component="span" className={classes.button}>Editing profile</Button>
+        <h2>Hyba byba</h2>
+       { handleOpen()}
       <Modal className={classes.location}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
@@ -63,7 +65,7 @@ const HomeComponentModal: React.FC<HomeProps> = () => {
         <div  className={classes.paper}>
           <h3 id="simple-modal-title">Enter new name or email</h3>
           <div id="simple-modal-description">
-            <HomeLogic />
+            {/* <HomeLogic /> */}
           </div>
 
         </div>
@@ -71,4 +73,4 @@ const HomeComponentModal: React.FC<HomeProps> = () => {
     </div>
   );
 }
-export default HomeComponentModal;
+export default HomeComponentModalDescription;

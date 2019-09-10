@@ -11,7 +11,9 @@ import RegistrationContainer from "./сontainers/registrationContainer";
 import HeaderContainer from "./сontainers/headerContainer";
 import UsersContainer from "./сontainers/usersContainer";
 import ProductsContainer from "./сontainers/productsContainer";
+import HomeComponentModalDescription from "./сomponents/products/productsComponentModalDescription";
 import "./rootStyle.css"
+
 
 
 
@@ -22,7 +24,8 @@ export const Path = {
   home: "/home",
   logout: "/logout",
   users: "/users",
-  products: "/products"
+  products: "/products",
+  description: "/description",
 };
 
 const store: Store<RootState> = configureStore();
@@ -38,6 +41,7 @@ export default () => (
         <Route path={Path.home} component={HomeContainer} />
         <Route path={Path.users} component={UsersContainer} />
         <Route path={Path.products} component={ProductsContainer} />
+        <Route path={Path.description} component={HomeComponentModalDescription} />
      </div>
 
         </Router>

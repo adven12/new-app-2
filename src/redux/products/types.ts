@@ -7,11 +7,11 @@ export enum ProductsActions {
   }
   
   export interface ProductsState {
-    data: any;
-    dataProducts: string;
     addToBasket: string;
-    dataArr: Array<book>;
-
+    dataProducts: string,
+    data: string,
+    dataArr: [],
+    search: string,
   }
 
   export interface ProductsRequest{

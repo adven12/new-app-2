@@ -5,11 +5,11 @@ import { doLogin } from "../../redux/login/sagasLogin";
 import avatar from "../../img/avatar.png"; 
 import basket from "../../img/basket.png";
 import BasketContainer from "../../сontainers/basketContainer"
+import { BasketState, BasketRequest } from "../../redux/basket/types";
 
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import basketContainer from "../../сontainers/basketContainer";
 import { createStyles, makeStyles, Theme, Modal } from "@material-ui/core";
 
 export interface HeaderProps {
@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       margin:"110px auto",
       position: 'absolute',
-      maxWidth: 480,
-      maxHeight: 330,
+      maxWidth: 'auto',
+      // maxHeight: 'auto',
     },
     paper: {
       backgroundColor: theme.palette.background.paper,

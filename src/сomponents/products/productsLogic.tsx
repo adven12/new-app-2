@@ -26,12 +26,18 @@ export interface ProductsModalProps {
         discript: "",
         price: 0,
       };
+    
+
+
+
       no_picturePhoto:any = no_picture
      handle = (event: any) =>{
       this.setState({ [event.target.name]: event.target.value } as any);
 
     }
     add = ():any => {
+      console.log("ds");
+      
         let addName:any = document.querySelector('#new_name');
         let addDiscript:any = document.querySelector('#new_discript');
         let addPrice:any = document.querySelector('#new_price');
@@ -48,6 +54,8 @@ export interface ProductsModalProps {
         if(newSave.picture === "" || this.state.picture === undefined){
           newSave.picture = this.no_picturePhoto;
         }
+        console.log(newSave);
+        
         
             fetch(`http://localhost:3003/products/`, {
             method: "POST",
@@ -55,6 +63,7 @@ export interface ProductsModalProps {
             body: JSON.stringify(newSave)
           });
     };
+
 
     handlePicture = (e: any) =>{
             let defaultPhoto = this.no_picturePhoto
@@ -83,7 +92,6 @@ export interface ProductsModalProps {
           
       saveNewPicture = () =>{
             this.handlePicture(null);
-           console.log("working22");
       }
 
     render(){
@@ -126,8 +134,7 @@ export interface ProductsModalProps {
         );
     }
 }
-
-
+// export default ProductLogic;
 export default connect(
     mapStateToProps,
     // { savePicture }
