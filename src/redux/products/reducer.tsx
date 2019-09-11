@@ -8,6 +8,7 @@ export const initialState: ProductsState = {
   data: "",
   dataArr: [],
   search: "",
+  redirectDescription: 0,
 };
 
 export function productsReducer(state: ProductsState = initialState, action: any) {

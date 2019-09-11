@@ -12,6 +12,7 @@ export enum ProductsActions {
     data: string,
     dataArr: [],
     search: string,
+    redirectDescription: number,
   }
 
   export interface ProductsRequest{
