@@ -6,6 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import { Button, Link, Card, CardContent, CardMedia, Typography } from '@material-ui/core';
 import { doHomeModal } from '../../redux/home/actions';
 import ProductsComponent from "../products/productsComponent";
+import ProductsDescriptionModalLogic from './productsDescriptionModalLogic';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -44,38 +45,61 @@ const ProductsDescription: React.FC<any> = (props) => {
   console.log(props.location.state.name);
   console.log(props.location.state.picture);
   console.log(props.location.state.full_discript);
+  console.log(props.location.state.discript);
+  console.log(props.location.state);
+
   const classes = useStyles({});
-  // const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
 
   return (
     <div className="productsDescription">
-      {/* <h2>H</h2> */}
       <Card className="productsComponent-books-card" >
-                      <CardContent>
-                        <CardMedia
-                          className="productsComponent-books-card-media"
-                          image={props.location.state.picture}
-                          title="Paella dish"
-                          id={props.location.state.id}
-                          />
-                        <Typography component="h6">
-                          {props.location.state.name}
-                        </Typography>
-                        <Typography component="h6">
-                          {props.location.state.full_discript}
-                        </Typography>
+      <CardContent>
+      <CardMedia
+          className="productsComponent-books-card-media"
+          image={props.location.state.picture}
+          title="Paella dish"
+          id={props.location.state.id}
+        />
+         <Typography component="h6">
+          {props.location.state.name}
+         </Typography>
+        <div>
+         {props.location.state.full_discript != undefined ?
+         (<Typography component="h6">{props.location.state.full_discript}</Typography>
+          ):(<Typography component="h6">{props.location.state.discript}</Typography>)}
+        </div>
+        </CardContent>
+      </Card>
+      <div>
+        <br/>
+         {props.location.state.full_discript != undefined ?
+         (<Button size="small" onClick={handleOpen}>Сhange Description</Button>
+          ):(null)}
+        <Modal className={classes.location}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={open}
+          onClose={handleClose}
+        >
+        <div  className={classes.paper}>
+        <h3 id="simple-modal-title">Enter a new description</h3>
+        <div id="simple-modal-description">
+          <ProductsDescriptionModalLogic product={props.location.state}/>
+        </div>
 
-                        </CardContent>
-        </Card>
+        </div>
+        </Modal>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 
 export enum BasketActions {
-  CLEAN_BASKET = "CLEAN_BASKET",
-  CLEAN_BASKET_BOOK = "CLEAN_BASKET_BOOK",
+  CLEAN_ALL_BASKET = "CLEAN_ALL_BASKET",
+  CLEAN_ONE_BASKET = "CLEAN_ONE_BASKET",
   }
   
   export interface BasketState {
     countBooks: number;
+    numberBooks: number;
   }
   export interface BasketRequest {
     dataArr: [];

@@ -88,14 +88,12 @@ export interface HomeModalProps {
           let img:any = document.querySelector('#photo');
 
           if(this.state.changePhoto == 'no_photo'){
-            console.log("zashlo");
             imgMin.src = this.avatarPhoto.avatar;
             img.src = this.avatarPhoto.avatar;
             console.log(this.avatarPhoto);
           }else{
           imgMin.src = this.state.changePhoto;
           img.src = this.state.changePhoto;
-          console.log("zashlo else");
           }
     };
 

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {CardMedia } from "@material-ui/core";
-import { number } from "prop-types";
+
 
 
 const useStyles = makeStyles((theme: Theme) => 
@@ -36,46 +36,47 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export interface BasketProps {
-  doBasket: () => object;
-  doBasketBook: (data:any) => object;
-  buyProduct: string,
-  addToBasket: string,
-  dataArr: any,
+  cleanAllBasket: () => object;
+  cleanOneBasket: (data:any,numberBooks:any) => object;
+  AddOneBasket: (numberBooks:any) => object;
+  allBooks: string,
+  currentBook: string,
+  basketBooks: any,
+  numberBooks: number,
+
 }
 
 const  BasketComponent: React.FC<BasketProps> = (props:any) => {
   const state:BasketState = { 
-    countBooks: 0
+    countBooks: 0,
+    numberBooks: 1,
   };
   const classes = useStyles();
-  // let countBooks = 0;
 
-  // const pBook = (price:any) => {
-  //   countBooks = countBooks+price;  
-  // };
   const mBook = (id:any) => {
-    const { doBasketBook } = props;
-    console.log("EEE",id);
-    
-    doBasketBook({ id});        
+    const { cleanOneBasket } = props;
+    cleanOneBasket({id},props.numberBooks);        
   }
-  
+  const pBook = (id:any) => {
+    const { AddOneBasket } = props;
+    AddOneBasket(props.numberBooks);        
+  }
+
   const cleanBasket = () =>{
-    const { doBasket } = props;
-    doBasket();          
+    const { cleanAllBasket } = props;
+    cleanAllBasket();          
   }
 
-
-
+ 
   return (
       <div className="basketComponent">
-        {props.addToBasket.addToBasket === undefined ? (
+        {props.currentBook.addToBasket === undefined ? (
           <div className="empty">
           <h2>Basket is empty</h2>
           </div>
         ) : (
-        props.dataArr.map((textArr:any, indexArr:any) => (
-        props.buyProduct.map((text:any, index:any) => (
+        props.basketBooks.map((textArr:any) => (
+        props.allBooks.map((text:any, index:any) => (
         textArr.addToBasket === text.id ?(  
         <div className="basketComponent-content" key={index}>
         <div className={classes.vanish} >{state.countBooks = Number(state.countBooks) + Number(text.price)}</div>
@@ -94,15 +95,15 @@ const  BasketComponent: React.FC<BasketProps> = (props:any) => {
         </Typography> 
         </Grid>  
         <Grid item  xs={3}>    
-        {/* <Button className={classes.button}  onClick={() => pBook(text.price)}>+</Button> */}
-        {/* <Typography  component="h6" id="countBooks">
-         {countBooks}
-        </Typography>   */}
+        <Button className={classes.button} onClick={() => pBook(text.price)}>+</Button>
+        <Typography  component="h6" id="numberBooks">
+         {props.numberBooks}
+        </Typography>  
         </Grid>
         </Grid>   
         <hr/>
         </div>
-        ) : (console.log("Orabotalo")))
+        ) : (null))
         
         
         )

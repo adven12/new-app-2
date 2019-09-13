@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button } from "@material-ui/core";
 import { makeStyles} from '@material-ui/core/styles';
-import ProductLogic from "../products/productsLogic";
+import ProductsComponentModalLogic from "./productsComponentModalLogic";
 
 const useStyles = makeStyles(theme => ({
     location: {
@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
       margin:"110px auto",
       position: 'absolute',
       maxWidth: 270,
-      maxHeight: 300,
+      maxHeight: 400,
     },
     paper: {
       backgroundColor: theme.palette.background.paper,
@@ -49,7 +49,7 @@ return (
   <div  className={classes.paper}>
   <h3 id="simple-modal-title">New product</h3>
   <div id="simple-modal-description">
-    <ProductLogic />
+    <ProductsComponentModalLogic />
   </div>
 
   </div>

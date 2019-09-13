@@ -9,22 +9,23 @@ import { Button } from "@material-ui/core";
 import { RootState } from "../../redux/rootReducer";
 import { home } from "../../redux/home/reducer";
 import no_picture from "../../img/no_picture.png"; 
-import Login from "../login/Login";
+import { doProducts } from "../../redux/products/actions";
 
 export interface ProductsModalProps {
-    // savePicture:(data: savePictureProfile) => object;
+    doProducts: () => object;
     changePhoto: string;
   }
   const mapStateToProps = (state:RootState) => ({
     changePhoto: state.products.dataProducts,
   });
- class ProductLogic extends React.Component<ProductsModalProps, ProductsModalState> {
+ class ProductsComponentModalLogic extends React.Component<ProductsModalProps, ProductsModalState> {
    [x: string]: any;
     state: ProductsModalState = {
         picture: "", 
         name: "",
         discript: "",
         price: 0,
+        full_discript: "",
       };
     
 
@@ -32,7 +33,7 @@ export interface ProductsModalProps {
 
       no_picturePhoto:any = no_picture
      handle = (event: any) =>{
-      this.setState({ [event.target.name]: event.target.value } as any);
+        this.setState({ [event.target.name]: event.target.value } as any);
 
     }
     add = ():any => {
@@ -41,15 +42,18 @@ export interface ProductsModalProps {
         let addName:any = document.querySelector('#new_name');
         let addDiscript:any = document.querySelector('#new_discript');
         let addPrice:any = document.querySelector('#new_price');
+        let addFull_discript:any = document.querySelector('#new_full_discript');
         addName.value = this.state.name;
         addDiscript.value = this.state.discript;
         addPrice.value = this.state.price;
+        addFull_discript.value = this.state.full_discript;
         
         const newSave = {
             name: this.state.name,
             discript: this.state.discript,
             price: this.state.price,
             picture: this.state.picture,
+            full_discript: this.state.full_discript,
         };
         if(newSave.picture === "" || this.state.picture === undefined){
           newSave.picture = this.no_picturePhoto;
@@ -62,6 +66,9 @@ export interface ProductsModalProps {
             headers: { "Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(newSave)
           });
+        
+          const { doProducts } = this.props;
+          doProducts(); 
     };
 
 
@@ -122,6 +129,15 @@ export interface ProductsModalProps {
               value={this.state.price}
               onChange={this.handle}
             />
+            <textarea 
+              id="new_full_discript"
+              className="homeLogic-input"
+              name="full_discript"
+              placeholder="Detailed product description"
+              value={this.state.full_discript}
+              onChange={this.handle}
+            ></textarea>
+
             <Button  size="small" className="homeLogic-input">
                 <input id="upload_picture" type="file" className="homeLogic-input-upload"/>
             </Button>
@@ -137,5 +153,5 @@ export interface ProductsModalProps {
 // export default ProductLogic;
 export default connect(
     mapStateToProps,
-    // { savePicture }
-  )(ProductLogic);
+    { doProducts }
+  )(ProductsComponentModalLogic);

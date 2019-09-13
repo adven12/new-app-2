@@ -1,6 +1,6 @@
 import React from "react";
 import { ProductsState, ProductsRequest } from "../../redux/products/types";
-import ProductLogic from "../products/productsLogic";
+import ProductLogic from "./productsComponentModalLogic";
 import ProductsComponentModal from "../products/productsComponentModal"
 import ProductsDescription from "../products/productsDescription"
 
@@ -24,6 +24,7 @@ const AdapterLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) 
 export interface ProductsProps {
   doProducts: () => object;
   doProductsToBasket: (data: ProductsRequest) => object;
+  doProductsUpdate: (data: ProductsRequest,allBooks:any) => object;
   isLog: boolean,
   dataProducts: string,
   data: [],
@@ -37,37 +38,43 @@ class ProductComponent extends React.Component<any, any> {
     dataArr: [],
     search: "",
     redirectDescription: 0,
+    numberBooks: 1,
   };
 
 
-  handleBuy = (id: any) => {
-    const { doProductsToBasket } = this.props;
-    doProductsToBasket({ addToBasket: id });
+  handleBuy = (book:any) => {
+
+        const { doProductsToBasket } = this.props;
+
+        doProductsToBasket(book);
+
 
   }
-  handleDel = (id: any) => {
-    this.props.dataProducts.forEach((item: any, index: any) => {
-      if (item.id === id) {
-        this.props.dataProducts.splice(index, 1)
-      }
-      fetch(`http://localhost:3003/products/${id}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      })
-        .then(res => res.json());
-    });
+  handleDel = (id: any) => { 
+    // this.props.dataProducts.forEach((item: any, index: any) => {
+    //   // if (item.id === id) {
+    //   //   this.props.dataProducts.splice(item, 1)
+    //   // }
+    //   // console.log("{item.id", item.id);   
+    //   fetch(`http://localhost:3003/products/${item.id}`, {
+    //     method: "DELETE",
+    //     headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    //   })  
+    //     .then(res => res.json());
+    // });
+    const { doProductsUpdate } = this.props;
+    doProductsUpdate(id, this.props.dataProducts );
+    console.log(this.props.dataProducts);
   }
-  // bookDescription = (id: any) =>
-  //   this.setState({ redirectDescription: 1 })
 
 
 
 
   render() {
-    
-    if (this.props.dataProducts.length <= 0) {
+     
+    if (this.props.dataProducts.length <= 0 ) {
       const { doProducts } = this.props;
-      doProducts();
+      doProducts(); 
     }
 
     return (
@@ -100,10 +107,13 @@ class ProductComponent extends React.Component<any, any> {
                           id={text.id}
                           component={AdapterLink} to={{
                             pathname: `/description/${text.id}`,
-                            state: { id: text.id,
-                                     name: text.name,
-                                     picture: text.picture,
-                                     full_discript: text.full_discript}
+                            state: {
+                              id: text.id,
+                              name: text.name,
+                              picture: text.picture,
+                              full_discript: text.full_discript,
+                              discript: text.discript,
+                            }
                           }}
                         // onClick={() => this.bookDescription(text.id)}
                         />
@@ -119,25 +129,25 @@ class ProductComponent extends React.Component<any, any> {
                         </Typography>
                       </CardContent>
                       <CardActions>
-                        <Button size="small" onClick={() => this.handleBuy(text.id)} id={text.id}>Buy</Button>
                         {this.props.data.role === "admin" ?
                           (
-                            <Button size="small" onClick={() => this.handleDel(text.id)}>Del</Button>
-                          ) : console.log("dffdg")
-                        }
-                      </CardActions>
+                            <div>
+                              <Button size="small" onClick={() => this.handleDel(text.id)}>Del</Button>
+                            </div>
+                          ) : <Button size="small" onClick={() => this.handleBuy(text)} id={text.id}>Buy</Button>
+                        }</CardActions>
                     </Card>
                   </div>
                 ) : (null)
               )
               )
-            ) : (console.log("isLog = false"))
+            ) : (null)
           }
           <br />
           {this.props.data.role === "admin" ?
             (
               <ProductsComponentModal />
-            ) : console.log("dffdg")
+            ) : (null)
           }
         </div>
       </div>
