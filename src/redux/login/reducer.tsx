@@ -5,12 +5,12 @@ export const initialState: LoginState = {
   email: "",
   password: "",
   isLog: false,
-  error:'',
+  error: '',
   data: [],
 };
 
 export function loginReducer(state: LoginState = initialState, action: any) {
-  
+
   switch (action.type) {
     case `@@login/DO_LOGIN`: {
       return {
@@ -20,16 +20,18 @@ export function loginReducer(state: LoginState = initialState, action: any) {
     case `@@login/LOGIN_FAILED`: {
       const { error } = action.payload;
       return {
-        ...state, 
+        ...state,
         error: error
       };
     }
 
     case `@@login/LOGIN_SUCCESS`: {
-      const { data } = action.payload;
+      const {data}  = action;
+      console.log(data);
+
       return {
         ...state,
-        data,
+        data: data,
         error: '',
         isLog: !state.isLog,
       };
@@ -44,6 +46,14 @@ export function loginReducer(state: LoginState = initialState, action: any) {
       return {
         ...state,
         data,
+      };
+    }
+    case `@@logout/DO_LOGOUT`: {
+      // console.log(action);
+      // const { data } = action.payload;
+      return {
+        ...state,
+          isLog: false,
       };
     }
     default:

@@ -5,11 +5,12 @@ import { string } from "prop-types";
 export const initialState: ProductsState = {
   dataProducts: "",
   addToBasket: "",
-  data: "",
+  book: "",
   dataArr: [],
   search: "",
   redirectDescription: 0,
   numberBooks: 1,
+  countBooks: 0,
 };
 
 export function productsReducer(state: ProductsState = initialState, action: any) {
@@ -62,9 +63,23 @@ export function productsReducer(state: ProductsState = initialState, action: any
           newState.dataArr.forEach((item: any) => {
             if (item.id === book.id) {
               item.quantity++
+              book.quantity = 0
         }
-      })}
+      })
+            if(book.quantity != 0) {
+            book.quantity = 1;
+            newState.dataArr.push(book);
+        }
+    }
 
+      //   else{
+      //     if(book.quantity !== 0){
+      //     book.quantity = 1;
+      //     newState.dataArr.push(book);
+      //     }else{console.log("null")}
+      //   }
+      // })}
+      
 
       //     if(checkId){
       //       console.log( newState.dataArr);
@@ -81,53 +96,57 @@ export function productsReducer(state: ProductsState = initialState, action: any
 
       return {
         ...state,
-        dataArr: newState.dataArr
+        dataArr: newState.dataArr,
+        book: book
       };
     }
     case `@@basket/CLEAN_ALL_BASKET`: {
-      let newState = JSON.parse(JSON.stringify(state))
-      console.log(newState.dataArr);
-
-      newState.dataArr.splice(0);
-
+      // let newState = JSON.parse(JSON.stringify(state))
+      // console.log(newState.dataArr);
+      // newState.dataArr.splice(0);
       return {
         ...state,
-        dataArr: newState.dataArr
+        dataArr: []
       };
     }
     case `@@basket/CLEAN_ONE_BASKET`: {
-      let { data, numberBooks } = action;
+      let { book, numberBooks } = action;
       let newState = JSON.parse(JSON.stringify(state))
-      if (numberBooks <= 1) {
-        newState.dataArr.map((text: any, index: any) => (
-          text.addToBasket == action.data.id ?
-            newState.dataArr.splice(text, 1)
-            : (null))
-        )
-      } else {
-        numberBooks--;
-      }
+        newState.dataArr.map((text: any, index: any) => {
+           
+          if(text.id == book.id) {
+            if(text.quantity <= 1){
+            (newState.dataArr.splice(text, 1))
+            }
+            else{
+              text.quantity--;
+              book.quantity = text.quantity
+            }
+          }
+        })
+      
       return {
         ...state,
         dataArr: newState.dataArr,
-        numberBooks: numberBooks
+        numberBooks:  book.quantity,
       };
     }
     case `@@basket/ADD_ONE_BASKET`: {
-      // let newState = JSON.parse(JSON.stringify(state))
-      //   newState.dataArr.map((text:any, index:any) => (
-      //   text.addToBasket == action.data.id ?  
-      //   newState.dataArr.splice(text,1) 
-      //   :(null))
-      //    )
       let newState = JSON.parse(JSON.stringify(state))
-      console.log(newState);
-
-      let { numberBooks } = action;
-      numberBooks++;
+      
+      let  {book}  = action;
+      newState.dataArr.map((text: any) => {
+      if(book.id == text.id){
+        text.quantity++;
+        book.quantity = text.quantity
+      }
+      })
+      console.log(newState.dataArr);
+      // book.quantity++;
       return {
         ...state,
-        numberBooks: numberBooks
+        dataArr: newState.dataArr,
+        numberBooks:  book.quantity,
       };
     }
 

@@ -5,9 +5,10 @@ import { cleanAllBasket, cleanOneBasket, AddOneBasket } from "../redux/basket/ac
 
 const mapStateToProps = (state: RootState) => ({
   allBooks: state.products.dataProducts,
-  currentBook: state.products.data,
+  currentBook: state.products.book,
   basketBooks: state.products.dataArr,
   numberBooks: state.products.numberBooks,
+  countBooks: state.products.countBooks,
 });
 
 export default connect(

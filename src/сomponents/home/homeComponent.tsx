@@ -1,10 +1,10 @@
 import React from "react";
 import { HomeState, HomeModalRequest } from "../../redux/home/types";
-import { Product } from "../../types/product";
+// import { Product } from "../../types/product";
 //import { doInit } from "@redux/home/actions";
 import HeaderContainer from "../../сontainers/headerContainer"
-import { error } from "../../redux/common/reducer";
-import { Error } from "../common/errorComponent"
+import { error } from "../../redux/error/reducer";
+// import { Error } from "../common/errorComponent"
 import { RootState } from "../../redux/rootReducer";
 import avatar from "../../img/avatar.png"; 
 import HomeComponentModal  from "./homeComponentModal";
@@ -21,6 +21,8 @@ import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Modal from '@material-ui/core/Modal';
 import { doHomeModal } from "../../redux/home/actions";
+import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) => 
   createStyles({
@@ -68,7 +70,6 @@ export interface HomeProps {
   isLog: boolean,
   error: string,
   data: any,
-  // avater: string,
 }
 
 const  HomeComponent: React.FC<HomeProps> = (props:any) => {
@@ -146,14 +147,10 @@ const  HomeComponent: React.FC<HomeProps> = (props:any) => {
 
           </div>
 
-          ) :
-          (
-          <div className="empty">
-
-          </div>
-          )
+          ) : (<Redirect to="/login"/>)
           }
           </div>
+
     );
 }
 export default HomeComponent;

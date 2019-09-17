@@ -1,10 +1,6 @@
 
-import { LogoutActions,  LogoutRequest } from "./types";
-
-const prefix = "@@logout";
-
-export function doLogout(data: LogoutRequest) {
+export function doLogout() {
   return {
-     type: `${prefix}/${LogoutActions.DO_LOGOUT}`,
-      data };
+     type: `@@logout/DO_LOGOUT`,
+    };
   }

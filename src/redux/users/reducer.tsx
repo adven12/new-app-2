@@ -10,14 +10,14 @@ export const initialState: UsersState = {
 export function usersReducer(state: UsersState = initialState, action: any) {
   switch (action.type) {
     case `@@users/DATAUSERS_INIT`: {
-      return initialState;
+      return {...state}; 
     }
     case `@@users/DATAUSERS_LOADED`: {
       const { dataUsers } = action.payload;
-           
+      console.log(dataUsers);
       return {
         ...state,
-        dataUsers
+        dataUsers: dataUsers
       };
     }
     case `@@DATAUSERS_LOAD_ERROR`: {

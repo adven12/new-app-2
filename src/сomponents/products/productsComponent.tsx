@@ -12,8 +12,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { CardMedia, Modal, Grid, TextField } from "@material-ui/core";
 import { DebounceInput } from 'react-debounce-input';
-import { Redirect, Router, Route } from "react-router";
+import { Redirect } from "react-router-dom";
 import { Link, LinkProps } from "react-router-dom";
+import { loadState, saveState } from "../../redux/localStorage";
 
 
 const AdapterLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
@@ -34,21 +35,45 @@ class ProductComponent extends React.Component<any, any> {
   state: ProductsState = {
     addToBasket: "",
     dataProducts: "",
-    data: "",
+    book: "",
     dataArr: [],
     search: "",
     redirectDescription: 0,
     numberBooks: 1,
+    countBooks: 0,
   };
 
 
   handleBuy = (book:any) => {
+      const { doProductsToBasket } = this.props;
+      doProductsToBasket(book);
+      
+      // for(var key in localParce.products.dataArr) {    
+      //   if(key ==='name'){
+      //     // if(newSave.email != ''){
+      //     // localParce.login.data[key] = newSave.email
+      //     // }
+      //     console.log("localParce.login.data[key]");
+          
+      //   } 
+      //   if(key ==='name'){
+      //     if(newSave.name != ''){
+      //       localParce.login.data[key] = newSave.name
+      //     }
+      //   }
+      //   if(key ==='avatar'){
+      //     localParce.login.data[key] = newSave.changePhoto
+      // }  
+    // } 
+    const localParce = loadState();
+    console.log(localParce);
+    console.log(localParce.products.dataArr);
+     //upload new data in localStorage            
+     localStorage.setItem('state',JSON.stringify(localParce));
+     //localStorage.clear();
+     //window.location.href = "/login";
 
-        const { doProductsToBasket } = this.props;
-
-        doProductsToBasket(book);
-
-
+      
   }
   handleDel = (id: any) => { 
     // this.props.dataProducts.forEach((item: any, index: any) => {
@@ -65,7 +90,7 @@ class ProductComponent extends React.Component<any, any> {
     const { doProductsUpdate } = this.props;
     doProductsUpdate(id, this.props.dataProducts );
     console.log(this.props.dataProducts);
-  }
+  };
 
 
 
@@ -79,6 +104,8 @@ class ProductComponent extends React.Component<any, any> {
 
     return (
       <div className="productsComponent">
+        {this.props.isLog ? 
+        (
         <div className="productsComponent-list ">
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -86,10 +113,6 @@ class ProductComponent extends React.Component<any, any> {
                 minLength={2}
                 debounceTimeout={300}
                 onChange={event => this.setState({ search: event.target.value })} />
-              {/* {this.props.dataProducts.map((text:any, index:any) => (
-        text.name == this.state.search ? (  
-        ):(null)
-        ))} */}
               <p>Value: {this.state.search}</p>
             </Grid>
           </Grid>
@@ -150,6 +173,8 @@ class ProductComponent extends React.Component<any, any> {
             ) : (null)
           }
         </div>
+        ) : (<Redirect to="/login"/>)
+        }
       </div>
     );
   }

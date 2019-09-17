@@ -2,7 +2,7 @@ import * as React from "react";
 import { LoginState,  LoginRequest } from "../../redux/login/types";
 import '../../rootStyle.css'
 import { Redirect } from 'react-router-dom'
-import { Error } from "../common/errorComponent"
+import  ErrorComponent  from "../../сontainers/errorContainer"
  
 export interface LoginProps {
   doLogin: (data: LoginRequest) => object;
@@ -43,7 +43,7 @@ export class LoginComponent extends React.Component<LoginProps, LoginState> {
     }
     return (
         <div className="loginComponent">
-         <Error/>
+         <ErrorComponent />
         
           <div className="loginComponent-h4">
             <h4>Enter your e-mail and password  </h4>

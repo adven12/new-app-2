@@ -21,14 +21,14 @@ export default function configureStore(): Store<RootState> {
 
   const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
-  const persistedState = loadState();
+  const persistedState = loadState(); 
 
   const store = createStore(rootReducer, persistedState ,enhancer);
   
     store.subscribe(() => {
       saveState({
         login:store.getState().login,
-        home:store.getState().home
+        products:store.getState().products
       });
     });
 

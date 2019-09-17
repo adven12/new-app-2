@@ -1,5 +1,4 @@
 import React from 'react';
-import { HomeState, HomeModalRequest } from "../../redux/home/types";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 // import  HomeLogic  from './homeLogic';
@@ -7,6 +6,7 @@ import { Button, Link, Card, CardContent, CardMedia, Typography } from '@materia
 import { doHomeModal } from '../../redux/home/actions';
 import ProductsComponent from "../products/productsComponent";
 import ProductsDescriptionModalLogic from './productsDescriptionModalLogic';
+import { Redirect } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,17 +36,15 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-export interface HomeProps {
-
+export interface ProductsProps {
+  isLog: boolean,
+  // dataProducts: string,
+  // data: [],
 }
 
 const ProductsDescription: React.FC<any> = (props) => {
-  console.log(props.location.state.id);
-  console.log(props.location.state.name);
-  console.log(props.location.state.picture);
-  console.log(props.location.state.full_discript);
-  console.log(props.location.state.discript);
-  console.log(props.location.state);
+  // console.log(props.location.state.id);
+  // console.log(props.location.state.name);
 
   const classes = useStyles({});
   const [open, setOpen] = React.useState(false);
@@ -62,6 +60,10 @@ const ProductsDescription: React.FC<any> = (props) => {
 
   return (
     <div className="productsDescription">
+      {props.isLog ? 
+      (
+        <div>
+        <div>
       <Card className="productsComponent-books-card" >
       <CardContent>
       <CardMedia
@@ -80,6 +82,7 @@ const ProductsDescription: React.FC<any> = (props) => {
         </div>
         </CardContent>
       </Card>
+      </div>
       <div>
         <br/>
          {props.location.state.full_discript != undefined ?
@@ -100,6 +103,9 @@ const ProductsDescription: React.FC<any> = (props) => {
         </div>
         </Modal>
       </div>
+      </div>
+      ) : (<Redirect to="/login"/>)
+      }
     </div>
   );
 }

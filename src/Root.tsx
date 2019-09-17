@@ -10,17 +10,12 @@ import HomeContainer from "./сontainers/homeContainer";
 import RegistrationContainer from "./сontainers/registrationContainer";
 import HeaderContainer from "./сontainers/headerContainer";
 import UsersContainer from "./сontainers/usersContainer";
-import productsDescriptionContainer from "./сontainers/productsDescriptionContainer";
 import ProductsContainer from "./сontainers/productsContainer";
-
-import "./rootStyle.css"
 import ProductsDescription from "./сomponents/products/productsDescription";
-
-
+import "./rootStyle.css"
 
 
 export const Path = {
-  root: "/",
   login: "/login",
   registration: "/registration",
   home: "/home",

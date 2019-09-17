@@ -10,12 +10,12 @@ export enum ProductsActions {
   export interface ProductsState {
     addToBasket: string;
     dataProducts: string,
-    data: string,
+    book: string,
     dataArr: [],
     search: string,
     redirectDescription: number,
     numberBooks: number,
-
+    countBooks: number,
   }
 
   export interface ProductsRequest{

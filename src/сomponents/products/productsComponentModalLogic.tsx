@@ -51,14 +51,14 @@ export interface ProductsModalProps {
         const newSave = {
             name: this.state.name,
             discript: this.state.discript,
-            price: this.state.price,
+            price: Number(this.state.price),
             picture: this.state.picture,
             full_discript: this.state.full_discript,
         };
         if(newSave.picture === "" || this.state.picture === undefined){
           newSave.picture = this.no_picturePhoto;
         }
-        console.log(newSave);
+        console.log(newSave.price);
         
         
             fetch(`http://localhost:3003/products/`, {

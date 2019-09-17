@@ -39,7 +39,7 @@ export interface HomeModalProps {
         // change inputs from homeComponent
         let editName:any = document.querySelector('#user-name');
         let editEmail:any = document.querySelector('#user-email');
-        console.log("1111111 ",editName.value);
+
         editName.value = this.state.name;
         editEmail.value = this.state.email;
 
@@ -57,21 +57,15 @@ export interface HomeModalProps {
             if(key ==='email'){
               if(newSave.email != ''){
               localParce.login.data[key] = newSave.email
-              console.log('What we assign', key, ':', localParce.login.data[key])
-              console.log('Modified - login:',localParce) 
               }
             } 
             if(key ==='name'){
               if(newSave.name != ''){
                 localParce.login.data[key] = newSave.name
-                console.log('What we assign', key, ':', localParce.login.data[key])
-                console.log('Modified - login:',localParce) 
               }
             }
             if(key ==='avatar'){
               localParce.login.data[key] = newSave.changePhoto
-              console.log('Img', key, ':', localParce.login.data[key])
-              console.log('Modified - img:',localParce) 
           }  
         }   
         
@@ -132,7 +126,6 @@ export interface HomeModalProps {
                    }
 
     render(){
-      console.log(this.state.idUser);
       
         return(
             <div className="homeLogic">

@@ -6,6 +6,6 @@ export enum UsersActions {
 }
 
 export interface UsersState {
-  dataUsers: string;
+  dataUsers: any;
   error: string;
 }
