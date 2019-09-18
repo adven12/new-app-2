@@ -74,9 +74,8 @@ const  BasketComponent: React.FC<BasketProps> = (props:any) => {
 return state.countBooks
 }
  
+console.log(props.basketBooks);
 
-
-  console.log(props.numberBooks)
   return (
       <div className="basketComponent">
         {props.currentBook === undefined ? (
@@ -105,7 +104,7 @@ return state.countBooks
         <Grid item  xs={3}>    
         <Button className={classes.button} onClick={() => pBook(text)}>+</Button>
         <Typography  component="h6" id="numberBooks">
-         {text.quantity}
+         {textArr.quantity}
         </Typography>  
         </Grid>
         </Grid>   
