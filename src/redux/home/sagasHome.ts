@@ -1,39 +1,41 @@
-import { put, takeEvery , call} from "redux-saga/effects";
-import  {callApi}   from "../../redux/login/req";
-    
+import { put, takeEvery, call } from "redux-saga/effects";
+import { callApi } from "../../redux/login/req";
+
 
 export function* saveImg(): IterableIterator<any> {
-  yield takeEvery(`@@home/DO_HOME_IMG`, function* (action: any) {
+  yield takeEvery(`@@home/DO_HOME_CHANGE`, function* (action: any) {
     try {
-       
-      const answerApi = yield call(callApi,'PUT', 'users');
-         console.log(answerApi);
 
-         const { img, id  } = action;
-         
-        console.log('User changePhoto: ' + img);
-        console.log('User idUser: ' + id);
-            
-        const user = answerApi.find((answerApi: any) => id === answerApi.id )
-        console.log(user);
+      const { data, id } = action;
+      
+      fetch(`http://localhost:3002/users/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify(data)
+      });
 
-        if(user){
-        yield put({
-        type: `@@home/DO_HOME_IMG`,
+      const users = yield call(callApi,'GET', 'users');
+      const user = users.find((users: any) => id === users.id)
+      
+      yield put({ 
+        type: `@@home/DO_HOME_CHANGE_CALL`,
           payload: {
-          data: user,
-          // isLog: true,
-        }
+          data: user,        
+          }
        });
-      }
-    
-}catch (error) {
-    yield put({
-      type: `@@home/DO_HOME_FAILED`,
-      payload: {
-        error: error.message
-      }
-    });
-  }
-});
+       yield put({
+        type: `@@login/LOGIN_SUCCESS`,
+          data: user,
+      });
+
+
+    } catch (error) {
+      yield put({
+        type: `@@home/DO_HOME_FAILED`,
+        payload: {
+          error: error.message
+        }
+      });
+    }
+  });
 }

@@ -1,27 +1,17 @@
 import React from 'react';
-import { HomeState, HomeModalRequest } from "../../redux/home/types";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import  HomeLogic  from './homeLogic';
 import { Button } from '@material-ui/core';
-import { doHomeModal } from '../../redux/home/actions';
-
 
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      // position: 'absolute',
-      // maxWidth: 270,
-      // maxHeight: 270,
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(0, 4, 1),
-      // margin: theme.spacing(30, 98),
-      // display: 'flex',
-      // margin: 'auto',
-      // justifyContent='center',
     },
     location: {
       display: 'flex',
@@ -35,11 +25,8 @@ const useStyles = makeStyles((theme: Theme) =>
       },
   }),
 );
-export interface HomeProps {
 
-  }
-
-const HomeComponentModal: React.FC<HomeProps> = () => {
+const HomeComponentModal: React.FC<any> = () => {
   const classes = useStyles({});
   const [open, setOpen] = React.useState(false);
 
@@ -63,7 +50,8 @@ const HomeComponentModal: React.FC<HomeProps> = () => {
         <div  className={classes.paper}>
           <h3 id="simple-modal-title">Enter new name or email</h3>
           <div id="simple-modal-description">
-            <HomeLogic />
+            <HomeLogic handleClose = {handleClose}
+            />
           </div>
 
         </div>

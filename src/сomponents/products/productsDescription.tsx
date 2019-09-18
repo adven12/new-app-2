@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 // import  HomeLogic  from './homeLogic';
 import { Button, Link, Card, CardContent, CardMedia, Typography } from '@material-ui/core';
-import { doHomeModal } from '../../redux/home/actions';
+// import { doHomeModal } from '../../redux/home/actions';
 import ProductsComponent from "../products/productsComponent";
 import ProductsDescriptionModalLogic from './productsDescriptionModalLogic';
 import { Redirect } from 'react-router-dom';

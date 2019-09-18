@@ -7,8 +7,6 @@ import  ErrorComponent  from "../../сontainers/errorContainer"
 export interface LoginProps {
   doLogin: (data: LoginRequest) => object;
   isLog: boolean
-  email: string
-  password: string
   data: any
 }
 
@@ -28,13 +26,10 @@ export class LoginComponent extends React.Component<LoginProps, LoginState> {
   
   login = () => {
     const { doLogin } = this.props;
-    console.log('this.state.email = ', this.state.email);
     doLogin({ email: this.state.email, password: this.state.password });
   };
 
-  render() {
-    console.log(this.props.data.role);
-    
+  render() {  
     if (this.props.data.role ===  "admin" ) {
       return <Redirect to="/users" />;
     }

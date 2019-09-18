@@ -3,14 +3,14 @@ import  {callApi}  from "../login/req";
 
 
 export function* doUsers(): IterableIterator<any> {
-  yield takeEvery(`@@users/DATAUSERS_INIT`, function* () {
+  yield takeEvery(`@@users/DO_DATAUSERS`, function* () {
     try {
     
       const users = yield call(callApi,'GET', 'users');
 
     if(users){
         yield put({ 
-        type: `@@users/DATAUSERS_LOADED`,
+        type: `@@users/DATAUSERS_SUCCESS`,
           payload: {
           dataUsers: users,
           }
@@ -19,7 +19,7 @@ export function* doUsers(): IterableIterator<any> {
        
 }catch (error) {
     yield put({
-      type: `@@DATAUSERS_LOAD_ERROR`,
+      type: `@@users/DATAUSERS_ERROR`,
       payload: {
         error: error.message
       }

@@ -9,7 +9,7 @@ import { Button } from "@material-ui/core";
 import { RootState } from "../../redux/rootReducer";
 import { home } from "../../redux/home/reducer";
 import no_picture from "../../img/no_picture.png"; 
-import Login from "../login/Login";
+
 
 export interface DescriptionModalProps {
     // savePicture:(data: savePictureProfile) => object;

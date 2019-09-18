@@ -27,30 +27,29 @@ export function loginReducer(state: LoginState = initialState, action: any) {
 
     case `@@login/LOGIN_SUCCESS`: {
       const {data}  = action;
-      console.log(data);
 
       return {
         ...state,
         data: data,
         error: '',
-        isLog: !state.isLog,
+        isLog: true,
       };
     }
-    case `@@home/DO_HOME_MODAL`: {
-      return {
-        ...state,
-      };
-    }
-    case `@@home/DO_HOME_MODAL_SUCCESS`: {
-      const { data } = action.payload;
-      return {
-        ...state,
-        data,
-      };
-    }
+    // case `@@home/DO_HOME_MODAL`: {
+    //   return {
+    //     ...state,
+    //   };
+    // }
+    // case `@@home/DO_HOME_MODAL_SUCCESS`: {
+    //   const { data } = action.payload;
+    //   console.log("ssssssssss", data);
+      
+    //   return {
+    //     ...state,
+    //     data,
+    //   };
+    // }
     case `@@logout/DO_LOGOUT`: {
-      // console.log(action);
-      // const { data } = action.payload;
       return {
         ...state,
           isLog: false,

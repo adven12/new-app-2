@@ -50,7 +50,7 @@ const HeaderComponent: React.FC = (props: any) => {
 
   if (props.data.role !== "admin") {
     defoltPhoto = props.data.avatar;
-    if (defoltPhoto === '' || defoltPhoto === undefined) {
+    if (defoltPhoto === '' || defoltPhoto === undefined || defoltPhoto === 'no_photo') {
       defoltPhoto = avatar
     }
   }

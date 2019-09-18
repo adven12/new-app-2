@@ -16,7 +16,6 @@ export function* doLogin(): IterableIterator<any> {
       console.log('User password: ' + password);
 
       const user = users.find((users: any) => email === users.email && password === users.password)
-      console.log(user);
 
       if (user) {
         yield put({
@@ -24,7 +23,7 @@ export function* doLogin(): IterableIterator<any> {
             data: user,
         });
         yield put({
-          type: `@@users/DATAUSERS_INIT`,
+          type: `@@users/DO_DATAUSERS`,
         });
       } else {
         yield put({

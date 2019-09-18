@@ -5,11 +5,7 @@ import  {callApi}   from "../../redux/login/req";
 
 export interface RegistrationProps {
   doRegistration: (data: RegistrationRequest) => object;
-  // token: any,
   isLog: boolean,
-  // email: string,
-  // password: string;
-  // name: string;
 }
 
 export class RegistrationComponent extends React.Component<RegistrationProps, RegistrationState> {
@@ -24,18 +20,13 @@ export class RegistrationComponent extends React.Component<RegistrationProps, Re
   handle = (event: any) =>
   this.setState({ [event.target.name]: event.target.value } as any);
 
-  registration = () => {
-    console.log(this.state);
-    
+  registration = () => {   
     const { doRegistration } = this.props;
     doRegistration({ email: this.state.email, password: this.state.password, name: this.state.name, avatar:this.state.avatar });
     
   };
 
-  render() {
-    console.log(this.props);
-    console.log(this.props.isLog);
-    
+  render() {   
     if (this.props.isLog) {
       return <Redirect to="/login" />;
     }
@@ -53,7 +44,7 @@ export class RegistrationComponent extends React.Component<RegistrationProps, Re
               
             }}
           >
-            q2qwerty
+            test
           </button>
         </div>
         <div className="headerRegistration-h3">

@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { doUsers } from "../redux/users/actions";
 
 
-
 const mapStateToProps = (state: RootState) => ({
   error: state.error,
   isLog: state.login.isLog,

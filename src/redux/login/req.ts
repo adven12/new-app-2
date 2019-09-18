@@ -1,9 +1,3 @@
-
-// export default function req(url:string, method:string,body?:object){
-//     return (fetch(`http://localhost:3001/users`,{method: method,
-//   headers:{'Contant-Type':'application/json', 'Accept': 'application/json'},
-// body: JSON.stringify(body)}).then(response => response.json()));
-//   }
 export const environment = {
   apiUrl : 'http://localhost:3002',
   };
