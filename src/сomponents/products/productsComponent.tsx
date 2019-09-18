@@ -1,10 +1,6 @@
 import React from "react";
 import { ProductsState, ProductsRequest } from "../../redux/products/types";
-import ProductLogic from "./productsComponentModalLogic";
 import ProductsComponentModal from "../products/productsComponentModal"
-import ProductsDescription from "../products/productsDescription"
-
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,18 +10,17 @@ import { CardMedia, Modal, Grid, TextField } from "@material-ui/core";
 import { DebounceInput } from 'react-debounce-input';
 import { Redirect } from "react-router-dom";
 import { Link, LinkProps } from "react-router-dom";
-import { loadState, saveState } from "../../redux/localStorage";
+import { loadState } from "../../redux/localStorage";
 
 
 const AdapterLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
   <Link innerRef={ref as any} {...props} />
 ));
 
-
 export interface ProductsProps {
   doProducts: () => object;
   doProductsToBasket: (data: ProductsRequest) => object;
-  doProductsUpdate: (data: ProductsRequest,allBooks:any) => object;
+  doProductsUpdate: (data: ProductsRequest,allBooks:ProductsRequest) => object;
   isLog: boolean,
   dataProducts: string,
   data: [],
@@ -33,12 +28,10 @@ export interface ProductsProps {
 
 class ProductComponent extends React.Component<any, any> {
   state: ProductsState = {
-    addToBasket: "",
     dataProducts: "",
     book: "",
     dataArr: [],
     search: "",
-    redirectDescription: 0,
     numberBooks: 1,
     countBooks: 0,
   };
@@ -48,52 +41,15 @@ class ProductComponent extends React.Component<any, any> {
       const { doProductsToBasket } = this.props;
       doProductsToBasket(book);
       
-      // for(var key in localParce.products.dataArr) {    
-      //   if(key ==='name'){
-      //     // if(newSave.email != ''){
-      //     // localParce.login.data[key] = newSave.email
-      //     // }
-      //     console.log("localParce.login.data[key]");
-          
-      //   } 
-      //   if(key ==='name'){
-      //     if(newSave.name != ''){
-      //       localParce.login.data[key] = newSave.name
-      //     }
-      //   }
-      //   if(key ==='avatar'){
-      //     localParce.login.data[key] = newSave.changePhoto
-      // }  
-    // } 
     const localParce = loadState();
-    console.log(localParce);
-    console.log(localParce.products.dataArr);
      //upload new data in localStorage            
-     localStorage.setItem('state',JSON.stringify(localParce));
-     //localStorage.clear();
-     //window.location.href = "/login";
-
-      
+     localStorage.setItem('state',JSON.stringify(localParce));     
   }
+
   handleDel = (id: any) => { 
-    // this.props.dataProducts.forEach((item: any, index: any) => {
-    //   // if (item.id === id) {
-    //   //   this.props.dataProducts.splice(item, 1)
-    //   // }
-    //   // console.log("{item.id", item.id);   
-    //   fetch(`http://localhost:3003/products/${item.id}`, {
-    //     method: "DELETE",
-    //     headers: { "Content-Type": "application/json", "Accept": "application/json" },
-    //   })  
-    //     .then(res => res.json());
-    // });
     const { doProductsUpdate } = this.props;
     doProductsUpdate(id, this.props.dataProducts );
-    console.log(this.props.dataProducts);
   };
-
-
-
 
   render() {
      
@@ -130,15 +86,14 @@ class ProductComponent extends React.Component<any, any> {
                           id={text.id}
                           component={AdapterLink} to={{
                             pathname: `/description/${text.id}`,
-                            state: {
-                              id: text.id,
-                              name: text.name,
-                              picture: text.picture,
-                              full_discript: text.full_discript,
-                              discript: text.discript,
-                            }
+                            // state: {
+                            //   id: text.id,
+                            //   name: text.name,
+                            //   picture: text.picture,
+                            //   full_discript: text.full_discript,
+                            //   discript: text.discript,
+                            // }
                           }}
-                        // onClick={() => this.bookDescription(text.id)}
                         />
                         <Typography component="h6">
                           {text.name}

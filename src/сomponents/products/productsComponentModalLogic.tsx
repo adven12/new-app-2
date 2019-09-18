@@ -1,19 +1,16 @@
 import React from "react";
-// import { saveImg } from "../../redux/products/actions";
-import { ProductsModalState, savePictureProfile } from "../../redux/products/types";
-import Modal from '@material-ui/core/Modal';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { ProductsModalState} from "../../redux/products/types";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { RootState } from "../../redux/rootReducer";
-import { home } from "../../redux/home/reducer";
 import no_picture from "../../img/no_picture.png"; 
-import { doProducts } from "../../redux/products/actions";
+import { doProducts, createProducts } from "../../redux/products/actions";
 
 export interface ProductsModalProps {
     doProducts: () => object;
+    createProducts: (data:any) => object;
     changePhoto: string;
+    handleClose: Function;
   }
   const mapStateToProps = (state:RootState) => ({
     changePhoto: state.products.dataProducts,
@@ -27,18 +24,13 @@ export interface ProductsModalProps {
         price: 0,
         full_discript: "",
       };
-    
-
-
-
+     
       no_picturePhoto:any = no_picture
      handle = (event: any) =>{
         this.setState({ [event.target.name]: event.target.value } as any);
 
     }
-    add = ():any => {
-      console.log("ds");
-      
+    add = ():any => {     
         let addName:any = document.querySelector('#new_name');
         let addDiscript:any = document.querySelector('#new_discript');
         let addPrice:any = document.querySelector('#new_price');
@@ -57,24 +49,18 @@ export interface ProductsModalProps {
         };
         if(newSave.picture === "" || this.state.picture === undefined){
           newSave.picture = this.no_picturePhoto;
-        }
-        console.log(newSave.price);
-        
-        
-            fetch(`http://localhost:3003/products/`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json", "Accept": "application/json"},
-            body: JSON.stringify(newSave)
-          });
-        
+        }       
+       
+          const { createProducts } = this.props;
+          createProducts(newSave);
           const { doProducts } = this.props;
           doProducts(); 
+          this.props.handleClose();
     };
 
 
-    handlePicture = (e: any) =>{
+    handlePicture = () =>{
             let defaultPhoto = this.no_picturePhoto
-            console.log(defaultPhoto);
             
             const toBase64 = (file:any) => new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -97,12 +83,9 @@ export interface ProductsModalProps {
             })
     }
           
-      saveNewPicture = () =>{
-            this.handlePicture(null);
-      }
 
     render(){
-      console.log(this.state.picture); 
+      console.log(this.props.changePhoto);
         return(
             <div className="homeLogic">
              <input
@@ -141,7 +124,7 @@ export interface ProductsModalProps {
             <Button  size="small" className="homeLogic-input">
                 <input id="upload_picture" type="file" className="homeLogic-input-upload"/>
             </Button>
-            <Button  size="small" component="span" className="homeLogic-input" onClick={() => this.saveNewPicture()}>
+            <Button  size="small" component="span" className="homeLogic-input" onClick={() => this.handlePicture()}>
                 Add picture
             </Button>
             <br/>
@@ -150,8 +133,7 @@ export interface ProductsModalProps {
         );
     }
 }
-// export default ProductLogic;
 export default connect(
     mapStateToProps,
-    { doProducts }
+    { doProducts, createProducts }
   )(ProductsComponentModalLogic);

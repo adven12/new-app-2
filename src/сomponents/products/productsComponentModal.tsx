@@ -49,7 +49,7 @@ return (
   <div  className={classes.paper}>
   <h3 id="simple-modal-title">New product</h3>
   <div id="simple-modal-description">
-    <ProductsComponentModalLogic />
+    <ProductsComponentModalLogic handleClose={handleClose}/>
   </div>
 
   </div>

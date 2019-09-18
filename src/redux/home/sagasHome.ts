@@ -2,7 +2,7 @@ import { put, takeEvery, call } from "redux-saga/effects";
 import { callApi } from "../../redux/login/req";
 
 
-export function* saveImg(): IterableIterator<any> {
+export function* sagaHome(): IterableIterator<any> {
   yield takeEvery(`@@home/DO_HOME_CHANGE`, function* (action: any) {
     try {
 

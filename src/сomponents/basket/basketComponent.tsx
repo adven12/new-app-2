@@ -5,8 +5,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {CardMedia } from "@material-ui/core";
-import { loadState } from "../../redux/localStorage";
-
 
 
 const useStyles = makeStyles((theme: Theme) => 
@@ -67,15 +65,7 @@ const  BasketComponent: React.FC<BasketProps> = (props:any) => {
   const cleanBasket = () =>{
     const { cleanAllBasket } = props;
     cleanAllBasket();    
-    // console.log(localStorage.state);
-    // localStorage.state.login.map((item:any) => (
-    //   console.log(item)
-      
-    // ))
-
-    // localStorage.removeItem("state");   
-    /////////////////////////////////////////
-    
+   
   }
   const sumBooks = () =>{
   props.basketBooks.map((item:any) => (
@@ -98,7 +88,6 @@ return state.countBooks
         props.allBooks.map((text:any, index:any) => (
         textArr.id === text.id ?(  
         <div className="basketComponent-content" key={index}>
-        {/* <div className={classes.vanish} >{state.countBooks = Number(state.countBooks) + Number(text.price)}</div> */}
         <Grid container spacing={2}>
         <Grid item  xs={2}>
         <Button className={classes.button} onClick={() => mBook(text)}>-</Button>

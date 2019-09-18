@@ -22,7 +22,7 @@ export const Path = {
   logout: "/logout",
   users: "/users",
   products: "/products",
-  description: "/description",
+  description: "/description/:id",
 };
 
 const store: Store<RootState> = configureStore();

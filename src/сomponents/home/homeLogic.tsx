@@ -1,6 +1,6 @@
 import React from "react";
 import { doHomeChange } from "../../redux/home/actions";
-import { HomeLogicState } from "../../redux/home/types";
+import { HomeLogicState, HomeModalRequest } from "../../redux/home/types";
 import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
 import avatar from "../../img/avatar.png";
@@ -9,7 +9,7 @@ import { RootState } from "../../redux/rootReducer";
 
 
 export interface HomeLogicProps {
-  doHomeChange: (data: any, id:any) => object;
+  doHomeChange: (data: HomeModalRequest, id:HomeModalRequest) => object;
   data: any;
   handleClose: Function; 
 }

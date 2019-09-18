@@ -50,7 +50,7 @@ const UsersComponent: React.FC = (props: any) => {
                 </TableHead>
                 <TableBody>
                   {props.dataUsers.map((text: any, index: any) => (
-                    <TableRow key={index.name}>
+                    <TableRow key={index}>
                       <TableCell >{text.id}</TableCell>
                       <TableCell align="right">{text.name}</TableCell>
                       <TableCell align="right">{text.email}</TableCell>

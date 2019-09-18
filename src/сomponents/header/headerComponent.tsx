@@ -96,7 +96,7 @@ const HeaderComponent: React.FC = (props: any) => {
                   <Link className="headerComponent-link" to="/products">Products</Link>
                   <Link onClick={() => logout()} className="headerComponent-link " to="/login">Logout</Link>
                 </header>
-                <Redirect to='/users' />
+                {/* <Redirect to='/users' /> */}
               </div>
 
             ) : (

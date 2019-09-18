@@ -35,20 +35,7 @@ export function loginReducer(state: LoginState = initialState, action: any) {
         isLog: true,
       };
     }
-    // case `@@home/DO_HOME_MODAL`: {
-    //   return {
-    //     ...state,
-    //   };
-    // }
-    // case `@@home/DO_HOME_MODAL_SUCCESS`: {
-    //   const { data } = action.payload;
-    //   console.log("ssssssssss", data);
-      
-    //   return {
-    //     ...state,
-    //     data,
-    //   };
-    // }
+
     case `@@logout/DO_LOGOUT`: {
       return {
         ...state,

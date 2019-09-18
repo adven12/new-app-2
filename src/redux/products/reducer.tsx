@@ -1,14 +1,11 @@
 import { RootState } from "../rootReducer";
 import { ProductsState } from "./types";
-import { string } from "prop-types";
 
 export const initialState: ProductsState = {
   dataProducts: "",
-  addToBasket: "",
   book: "",
   dataArr: [],
   search: "",
-  redirectDescription: 0,
   numberBooks: 1,
   countBooks: 0,
 };
@@ -21,8 +18,6 @@ export function productsReducer(state: ProductsState = initialState, action: any
     case `DELETE_BOOK`: {
       const { data, allBooks } = action;
 
-      console.log(allBooks)
-      console.log(data)
       allBooks.map((text: any, index: any) => (
         text.id == data ? (
           allBooks.splice(text, 1)
@@ -31,7 +26,6 @@ export function productsReducer(state: ProductsState = initialState, action: any
       return {
         ...state,
         dataProducts: allBooks
-
       }
     }
     case `LOADED_BOOKS`: {
@@ -49,12 +43,10 @@ export function productsReducer(state: ProductsState = initialState, action: any
         error: error
       };
     }
-    case `@@products/DO_PRODUCTS_TO_BASKET`: {
+    case `DO_PRODUCTS_TO_BASKET`: {
       let newState = JSON.parse(JSON.stringify(state))
-   console.log(newState.dataProducts);
       const { book } = action;
 
-      console.log(book);
       if (newState.dataArr.length === 0) {
         book.quantity = 1;
         newState.dataArr.push(book);
@@ -72,28 +64,6 @@ export function productsReducer(state: ProductsState = initialState, action: any
         }
     }
 
-      //   else{
-      //     if(book.quantity !== 0){
-      //     book.quantity = 1;
-      //     newState.dataArr.push(book);
-      //     }else{console.log("null")}
-      //   }
-      // })}
-      
-
-      //     if(checkId){
-      //       console.log( newState.dataArr);
-      //       newState.dataArr.forEach((item:any) => {
-      //         if(item.id === data.addToBasket.id) {
-      //           item.addToBasket.quantity ++
-
-      //     }else{
-      //       newState.dataArr.push(data)
-      //     }
-      //   })
-      // }
-      console.log(newState.dataArr);
-
       return {
         ...state,
         dataArr: newState.dataArr,
@@ -101,9 +71,6 @@ export function productsReducer(state: ProductsState = initialState, action: any
       };
     }
     case `@@basket/CLEAN_ALL_BASKET`: {
-      // let newState = JSON.parse(JSON.stringify(state))
-      // console.log(newState.dataArr);
-      // newState.dataArr.splice(0);
       return {
         ...state,
         dataArr: []
@@ -141,20 +108,25 @@ export function productsReducer(state: ProductsState = initialState, action: any
         book.quantity = text.quantity
       }
       })
-      console.log(newState.dataArr);
-      // book.quantity++;
       return {
         ...state,
         dataArr: newState.dataArr,
         numberBooks:  book.quantity,
       };
     }
-
-
+    case `CREATE_BOOKS`: {   
+      return {
+        ...state,
+      };
+    }
+    case `DO_BOOK_CHANGE`: {   
+      return {
+        ...state,
+      };
+    }
     default:
       return state;
   }
 }
-
 
 export const products = (state: RootState) => state.products;
