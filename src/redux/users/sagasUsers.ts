@@ -6,13 +6,14 @@ export function* doUsers(): IterableIterator<any> {
   yield takeEvery(`@@users/DO_DATAUSERS`, function* () {
     try {
     
-      const users = yield call(callApi,'GET', 'users');
-
+      const users = yield call(callApi,'GET', 'v1/users/');
+      console.log(users.data);
+              
     if(users){
         yield put({ 
         type: `@@users/DATAUSERS_SUCCESS`,
           payload: {
-          dataUsers: users,
+          dataUsers: users.data,
           }
        });
     }

@@ -11,6 +11,7 @@ import { DebounceInput } from 'react-debounce-input';
 import { Redirect } from "react-router-dom";
 import { Link, LinkProps } from "react-router-dom";
 import { loadState } from "../../redux/localStorage";
+import no_picture from "../../img/no_picture.png"; 
 
 
 const AdapterLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
@@ -52,7 +53,9 @@ class ProductComponent extends React.Component<any, any> {
   };
 
   render() {
-     
+     console.log(this.props.dataProducts);
+     console.log(this.props.data);
+
     if (this.props.dataProducts.length <= 0 ) {
       const { doProducts } = this.props;
       doProducts(); 
@@ -81,7 +84,7 @@ class ProductComponent extends React.Component<any, any> {
                       <CardContent>
                         <CardMedia
                           className="productsComponent-books-card-media"
-                          image={text.picture}
+                          image={no_picture}
                           title="Paella dish"
                           id={text.id}
                           component={AdapterLink} to={{

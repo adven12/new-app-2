@@ -28,11 +28,10 @@ export interface UsersProps {
   data: any
 }
 
+
 const UsersComponent: React.FC = (props: any) => {
-
   const classes: any = useStyles();
-
-
+  
   return (
     <div className="usersComponent">
       {props.data.role === "admin" ?
@@ -42,19 +41,19 @@ const UsersComponent: React.FC = (props: any) => {
               <Table className={classes.table}>
                 <TableHead>
                   <TableRow>
-                    <TableCell align="right">Id</TableCell>
+                    <TableCell align="left">Id</TableCell>
                     <TableCell align="right">Name</TableCell>
                     <TableCell align="right">Email</TableCell>
-                    <TableCell align="right">Password</TableCell>
+                    <TableCell align="right">Role</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {props.dataUsers.map((text: any, index: any) => (
                     <TableRow key={index}>
-                      <TableCell >{text.id}</TableCell>
+                      <TableCell align="left">{text._id}</TableCell>
                       <TableCell align="right">{text.name}</TableCell>
                       <TableCell align="right">{text.email}</TableCell>
-                      <TableCell align="right">{text.password}</TableCell>
+                      <TableCell align="right">{text.role}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

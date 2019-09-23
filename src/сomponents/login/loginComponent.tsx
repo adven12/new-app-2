@@ -22,7 +22,6 @@ export class LoginComponent extends React.Component<LoginProps, LoginState> {
     this.setState({ [event.target.name]: event.target.value } as any);  
   }  
     
-
   
   login = () => {
     const { doLogin } = this.props;

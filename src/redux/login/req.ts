@@ -1,5 +1,5 @@
 export const environment = {
-  apiUrl : 'http://localhost:3002',
+  apiUrl : 'http://localhost:3000',
   };
 
 export async function callApi(method: string, path: string, data ?: object, url: string = environment.apiUrl) {
@@ -12,3 +12,4 @@ export async function callApi(method: string, path: string, data ?: object, url:
   }).then(d => d.json()) 
    return await response
 }
+

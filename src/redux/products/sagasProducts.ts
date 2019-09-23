@@ -6,16 +6,17 @@ export function* doProducts(): IterableIterator<any> {
   yield takeEvery(`GET_ALL_BOOKS`, function* () {
     try {
       
-      const products = yield call(callApiProducts,'GET', 'products');
-
-    if(products.length == 0){
+    const products = yield call(callApiProducts,'GET', 'v1/products/');
+    console.log(products.data);
+    
+    if(products.data.length == 0){
       return null;
     }
 
         yield put({ 
         type: `LOADED_BOOKS`,
           payload: {
-          dataProducts: products,
+          dataProducts: products.data,
           
           }
        });
@@ -69,11 +70,12 @@ export function* doProductsUpdate(): IterableIterator<any> {
   export function* createProducts(): IterableIterator<any> {
     yield takeEvery('CREATE_BOOKS', function*(action: any) {
         try {
-          fetch(`http://localhost:3003/products/`, {
+          const answerApi = fetch(`http://localhost:3000/v1/products/create`, {
             method: "POST",
             headers: { "Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(action.data)
           });
+           console.log(answerApi);
            
             yield put ({
               type: 'GET_ALL_BOOKS',

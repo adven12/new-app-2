@@ -5,7 +5,11 @@ import  {callApi}   from "../../redux/login/req";
 export function* doRegistration(): IterableIterator<any> {
   yield takeEvery(`@@registration/DO_REGISTRATION`, function* (action: any) {
     try {
-        const answerApi = yield call(callApi,'POST', 'users', action.data);
+      console.log(action.data);
+    
+        const answerApi = yield call(callApi,'POST', 'v1/register', action.data);
+        console.log(answerApi);
+        
         yield put({
         type: `@@registration/REGISTRATION_SUCCESS`,
           payload: {

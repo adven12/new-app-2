@@ -3,8 +3,10 @@ import { Link, Redirect } from "react-router-dom";
 import avatar from "../../img/avatar.png";
 import basket from "../../img/basket.png";
 import BasketContainer from "../../сontainers/basketContainer"
+import jwt_decode  from "jwt-decode"
 import Badge from '@material-ui/core/Badge';
 import { createStyles, makeStyles, Theme, Modal } from "@material-ui/core";
+
 
 export interface HeaderProps {
   doLogout: () => object;
@@ -48,7 +50,9 @@ const HeaderComponent: React.FC = (props: any) => {
   let defoltPhoto = '';
   let sum = 0;
 
-  if (props.data.role !== "admin") {
+  console.log(props.data.role);
+  console.log(props.isLog);
+  if (props.data.role != "admin") {
     defoltPhoto = props.data.avatar;
     if (defoltPhoto === '' || defoltPhoto === undefined || defoltPhoto === 'no_photo') {
       defoltPhoto = avatar
@@ -77,7 +81,6 @@ const HeaderComponent: React.FC = (props: any) => {
     setOpen(false);
   };
 
-  
   return (
     <div className="headerComponent">
       {(!props.isLog) ?
