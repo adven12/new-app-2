@@ -60,7 +60,8 @@ class ProductComponent extends React.Component<any, any> {
       const { doProducts } = this.props;
       doProducts(); 
     }
-
+    console.log(this.props.dataProducts);
+    
     return (
       <div className="productsComponent">
         {this.props.isLog ? 
@@ -86,9 +87,9 @@ class ProductComponent extends React.Component<any, any> {
                           className="productsComponent-books-card-media"
                           image={no_picture}
                           title="Paella dish"
-                          id={text.id}
+                          id={text._id}
                           component={AdapterLink} to={{
-                            pathname: `/description/${text.id}`,
+                            pathname: `/description/${text._id}`,
                             // state: {
                             //   id: text.id,
                             //   name: text.name,
@@ -113,7 +114,7 @@ class ProductComponent extends React.Component<any, any> {
                         {this.props.data.role === "admin" ?
                           (
                             <div>
-                              <Button size="small" onClick={() => this.handleDel(text.id)}>Del</Button>
+                              <Button size="small" onClick={() => this.handleDel(text._id)}>Del</Button>
                             </div>
                           ) : <Button size="small" onClick={() => this.handleBuy(text)} id={text.id}>Buy</Button>
                         }</CardActions>

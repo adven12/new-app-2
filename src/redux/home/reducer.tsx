@@ -2,6 +2,7 @@ import { RootState } from "../rootReducer";
 import { HomeState } from "./types";
 import { saveState } from "../localStorage";
 
+
 export const initialState: HomeState = {
   error: '',
   isLog: false,
@@ -22,9 +23,9 @@ export function homeReducer(state: HomeState = initialState, action: any) {
     case `@@home/DO_HOME_CHANGE_CALL`: {
       const { data } = action.payload;
       const local: any = localStorage.getItem('state')
-      const localParce = JSON.parse(local);
+      const localParce = JSON.parse(local);     
       localParce.login.data = data;
-      
+
       return {
         ...state,
         data: localParce,

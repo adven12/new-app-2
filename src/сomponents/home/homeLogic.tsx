@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
 import avatar from "../../img/avatar.png";
 import { RootState } from "../../redux/rootReducer";
+import jwt_decode from "jwt-decode";
 
 
 
@@ -25,6 +26,10 @@ class HomeLogic extends React.Component<HomeLogicProps, HomeLogicState> {
     changePhoto: "no_photo",
   };
   avatarPhoto: any = { avatar }
+
+  
+
+
   handle = (event: any) => {
     this.setState({ [event.target.name]: event.target.value } as any);
 
@@ -43,9 +48,9 @@ class HomeLogic extends React.Component<HomeLogicProps, HomeLogicState> {
       avatar: this.state.changePhoto,
     };
     const local: any = localStorage.getItem('state')
-    console.log(local);
     const localParce = JSON.parse(local)
-
+    console.log(localParce.login.data);
+  
     for (var key in localParce.login.data) {
       if (key === 'email') {
         if (newSave.email != '') {
@@ -61,7 +66,9 @@ class HomeLogic extends React.Component<HomeLogicProps, HomeLogicState> {
         localParce.login.data[key] = newSave.avatar
       }
     }
+    
     let userId = localParce.login.data.id;
+   
     let imgMin: any = document.querySelector('#photoMin');
     let img: any = document.querySelector('#photo');
 
@@ -73,8 +80,8 @@ class HomeLogic extends React.Component<HomeLogicProps, HomeLogicState> {
       imgMin.src = this.state.changePhoto;
       img.src = this.state.changePhoto;
     }
-    
     const { doHomeChange } = this.props;
+    
     doHomeChange(localParce.login.data, userId);
     this.props.handleClose();
   }
@@ -107,6 +114,7 @@ class HomeLogic extends React.Component<HomeLogicProps, HomeLogicState> {
   }
  
   render() {
+
       return (
       <div className="homeLogic">
         <input

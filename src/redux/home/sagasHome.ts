@@ -7,25 +7,34 @@ export function* sagaHome(): IterableIterator<any> {
     try {
 
       const { data, id } = action;
+      console.log(action);
       
-      fetch(`http://localhost:3002/users/${id}`, {
+      const answerApi = fetch(`http://localhost:3000/v1/users/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", "Accept": "application/json"},
         body: JSON.stringify(data)
-      });
-
-      const users = yield call(callApi,'GET', 'users');
-      const user = users.find((users: any) => id === users.id)
+        
+      })
+     
+      console.log(data);
+      // const user = yield call(callApi, 'POST', 'v1/authenticate', data);
+      // const user = fetch(`http://localhost:3000/v1/users/${id}`, {
+      //   method: "GET",
+      //   headers: { "Content-Type": "application/json", "Accept": "application/json"},  
+      //   // 'Authorization' : `Bearer ${data}`
+      // })
+      // const user = users.find((users: any) => id === users.id)
+      // console.log(user);
       
       yield put({ 
         type: `@@home/DO_HOME_CHANGE_CALL`,
           payload: {
-          data: user,        
+          data: data,        
           }
        });
        yield put({
         type: `@@login/LOGIN_SUCCESS`,
-          data: user,
+          data: data,
       });
 
 

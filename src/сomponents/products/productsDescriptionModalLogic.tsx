@@ -27,7 +27,7 @@ export interface DescriptionModalProps {
         let full_discript:any = document.querySelector('#new_full_discript');    
         this.props.product.full_discript =  full_discript.value 
         const { doProductChange } = this.props;
-        doProductChange(this.props.product,this.props.product.id)
+        doProductChange(this.props.product,this.props.product._id)
 
         this.props.handleClose();
     };

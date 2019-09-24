@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {CardMedia } from "@material-ui/core";
+import no_picture from "../../img/no_picture.png";
 
 
 const useStyles = makeStyles((theme: Theme) => 
@@ -75,6 +76,9 @@ return state.countBooks
 }
  
 console.log(props.basketBooks);
+console.log(props.currentBook);
+console.log(props.allBooks);
+
 
   return (
       <div className="basketComponent">
@@ -93,7 +97,7 @@ console.log(props.basketBooks);
         </Grid> 
         <Grid item  xs={7}>
         <CardMedia
-            className={classes.media} image={text.picture} title="Paella dish" />
+            className={classes.media} image={no_picture} title="Paella dish" />
         <Typography  component="h6">
         {text.name}
         </Typography>

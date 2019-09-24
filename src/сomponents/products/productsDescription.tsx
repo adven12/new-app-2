@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Typography, Button, Modal } from '@material-ui/core';
 import ProductsDescriptionModalLogic from './productsDescriptionModalLogic';
+import no_picture from "../../img/no_picture.png"; 
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -51,16 +52,16 @@ const ProductsDescription: React.FC<any> = (props) => {
     <div className="productsDescription">
      {props.isLog || props.isLog == undefined ? (
      props.dataProducts.map((item:any, index:any) => (
-     props.match.params.id == item.id ? (
+     props.match.params.id == item._id ? (
       <div key={index}>
       <div>
      <Card className="productsComponent-books-card" >
      <CardContent>
      <CardMedia
           className="productsComponent-books-card-media"
-          image={item.picture}
+          image={no_picture}
           title="Paella dish"
-          id={item.id}
+          id={item._id}
         />
         <Typography component="h6">
         {item.name}

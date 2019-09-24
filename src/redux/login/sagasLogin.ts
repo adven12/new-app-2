@@ -6,7 +6,8 @@ import jwt_decode  from "jwt-decode"
 export function* doLogin(): IterableIterator<any> {
   yield takeEvery(`@@login/DO_LOGIN`, function* (action: any) {
     try {
-
+      console.log(action.data);
+      
       const user = yield call(callApi, 'POST', 'v1/authenticate', action.data);
       // const token = await jwt.verify({ username: 'fl0w' }, 'secret-dev-key')
 
@@ -15,7 +16,7 @@ export function* doLogin(): IterableIterator<any> {
       try {
           data  =  jwt_decode (user.data);
         console.log(data.userData);
-       // допустимый формат токена 
+      //  допустимый формат токена 
      } catch (error) {
         // неверный формат токена 
      }

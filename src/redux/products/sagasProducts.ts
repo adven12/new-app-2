@@ -37,16 +37,17 @@ export function* doProductsUpdate(): IterableIterator<any> {
       try {
         
         let id = action.data;
-        const API_URL = 'http://localhost:3003/products/'                                            
-        const API_PATH = id
+        console.log(id);
+        
+        const API_URL = `http://localhost:3000/v1/products/${id}`                                            
         
           yield call (() => {
-              return fetch(API_URL + API_PATH, {
-                method: 'DELETE'
+              return fetch(API_URL, {
+                method: 'DELETE',
               })
 
           } )
-
+           
           yield put ({
             type: 'GET_ALL_BOOKS',
             payload: {
@@ -99,8 +100,10 @@ export function* doProductsUpdate(): IterableIterator<any> {
 
   export function* doProductChange(): IterableIterator<any> {
     yield takeEvery('DO_BOOK_CHANGE', function*(action: any) {
+      console.log(action.id);
+      
         try {
-           fetch(`http://localhost:3003/products/${action.id}`, {
+           fetch(`http://localhost:3000/v1/products/${action.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json", "Accept": "application/json"},
             body: JSON.stringify(action.data)

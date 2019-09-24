@@ -50,14 +50,13 @@ const HeaderComponent: React.FC = (props: any) => {
   let defoltPhoto = '';
   let sum = 0;
 
-  console.log(props.data.role);
-  console.log(props.isLog);
-  if (props.data.role != "admin") {
-    defoltPhoto = props.data.avatar;
-    if (defoltPhoto === '' || defoltPhoto === undefined || defoltPhoto === 'no_photo') {
+ 
+  // if (data.userData.role != "admin") {
+  //   defoltPhoto = data.userData.avatar;
+  //   if (defoltPhoto === '' || defoltPhoto === undefined || defoltPhoto === 'no_photo') {
       defoltPhoto = avatar
-    }
-  }
+  //   }
+  // }
 
   function sumQuantity() {
     props.basketBooks.map((book: any) => {

@@ -31,6 +31,7 @@ export interface UsersProps {
 
 const UsersComponent: React.FC = (props: any) => {
   const classes: any = useStyles();
+  console.log();
   
   return (
     <div className="usersComponent">

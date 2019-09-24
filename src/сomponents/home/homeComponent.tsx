@@ -62,16 +62,18 @@ const HomeComponent: React.FC<HomeProps> = (props: any) => {
  
   const classes = useStyles();
 
-  let defoltPhoto = props.dataL.avatar;
+  let defoltPhoto:any
+  // defoltPhoto = dataL.userData.avatar;
   if (defoltPhoto === '' || defoltPhoto === undefined || defoltPhoto === 'no_photo') {
     defoltPhoto = avatar
-  }
-
+  }  
+  
   if(props.dataH !== ''){  
   let test = JSON.stringify(props.dataH);
   localStorage.setItem('state',test);
   }
-
+ console.log(props.dataH);
+ 
   return (
     <div className="homeComponent">
 
